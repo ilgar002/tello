@@ -1,0 +1,35 @@
+@import '../../../Scss/variables.scss';
+
+.search-form {
+    display: flex;
+    background-color: $clr-gray-6;
+    padding: 10px 16px;
+    border-radius: 0.5rem;
+    border: 1px solid $clr-gray-5;
+    height: 40px;
+    max-width: 590px;
+    width: 590px;
+
+    .search-input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: $clr-gray-1;
+        width: 100%;
+        padding-left: 25px;
+
+        &::placeholder {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: $clr-gray-3;
+        }
+    }
+}
+
+@media(max-width:576px){
+    .search-form{
+        order: 1;
+    }
+}

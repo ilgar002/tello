@@ -1,0 +1,37 @@
+@import "../../../Scss/variables.scss";
+
+nav {
+    ul.nav-links {
+        display: flex;
+        gap: 56px;
+
+        li.link {
+            white-space: nowrap;
+            color: $clr-gray-2;
+            font-size: 1.1rem;
+            font-weight: 400;
+            // cursor: pointer;
+            transition: all .1s ease;
+            padding-bottom: 12px;
+            text-transform: capitalize;
+
+            span {
+                cursor: pointer;
+            }
+
+            &:hover {
+                color: $clr-default;
+
+                .dropdown-menu {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    nav {
+        display: none;
+    }
+}

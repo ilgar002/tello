@@ -1,0 +1,89 @@
+@import '../../Scss/variables.scss';
+
+header {
+    background-color: #fff;
+    border-bottom: 1px solid $clr-default;
+    height: 128px;
+    padding: 20px 75px 0 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 28px;
+    position: relative;
+
+    .hamburger-button {
+        display: none;
+        cursor: pointer;
+    }
+
+    .user-block {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+        
+
+        .basket {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+
+            .basket-count {
+                background-color: $clr-default;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 0.85rem;
+                font-weight: 400;
+            }
+        }
+
+        img {
+            cursor: pointer;
+            width: 25px;
+
+            &.person {
+                width: 18px;
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    header {
+        padding: 8px 16px 16px 16px;
+        gap: 4px;
+
+        .logo {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .hamburger-button {
+            display: block;
+        }
+
+        .user-block {
+            gap: 15px;
+            flex: 1;
+                justify-content: end;
+
+            .basket {
+                position: relative;
+
+                .basket-count {
+                    width: 21px;
+                    height: 21px;
+                    position: absolute;
+                    right: -10px;
+                    top: -10px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,172 @@
+@import "../../Scss/variables.scss";
+
+footer {
+    background-color: $clr-footer-bg;
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .column-title {
+                font-weight: 500;
+                font-size: 1.4rem;
+                color: #FFFFFF;
+            }
+
+            ul.footer-column {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                li {
+                    a {
+                        font-weight: 400;
+                        font-size: 1.1rem;
+                        color: #FFFFFF;
+                        transition: all .1s ease;
+
+                        &:hover {
+                            color: $clr-default;
+                        }
+                    }
+                }
+
+                &.contact {
+                    li {
+                        a {
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+                        }
+                    }
+                }
+            }
+
+            &.passage {
+                gap: 32px;
+            }
+        }
+
+        &:first-child {
+            padding: 46px 75px 150px 75px;
+        }
+
+        &.rights {
+            padding: 24px 0;
+            border-top: 1px solid rgba($color: #fff, $alpha: 0.1);
+            padding: 24px 75px 24px 75px;
+
+            span {
+                font-weight: 400;
+                font-size: 1.1rem;
+                line-height: 20px;
+                color: #FFFFFF;
+                cursor: pointer;
+                transition: all .1 ease;
+
+                &:hover {
+                    color: $clr-default;
+                }
+            }
+
+            .left {
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                }
+            }
+
+            .right {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    footer {
+        .row {
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+
+            .column {
+                .column-title {
+                    font-size: 1.25rem;
+                }
+
+                ul.footer-column {
+                    li {
+                        a {
+                            font-size: 1rem;
+                            opacity: 0.8;
+                        }
+                    }
+
+                    &.contact {
+                        text-align: left;
+                        gap: 24px;
+
+                        li {
+                            a {
+                                gap: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .column.passage {
+                gap: 24px;
+            }
+
+            &:first-child {
+                padding: 46px 75px 24px 75px;
+                text-align: center;
+            }
+
+            &.rights {
+                border: none;
+                gap: 0;
+                padding: 0;
+
+                .right {
+                    order: -1;
+                    width: 100%;
+                    justify-content: space-between;
+                    padding: 16px 44px 24px 44px;
+
+                    span {
+                        opacity: 0.8;
+                    }
+                }
+
+                .left {
+                    width: 100%;
+                    padding: 24px 0;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+                    span {
+                        font-size: 1rem;
+                        justify-content: center;
+                        opacity: 0.8;
+                    }
+                }
+
+                span {
+                    font-size: .9rem;
+
+                }
+            }
+        }
+    }
+
+}
