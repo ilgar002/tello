@@ -1,0 +1,17 @@
+@import '../../../Scss/variables.scss';
+
+.orderBy {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 10px 16px;
+    border: 1px solid $clr-gray-4;
+    border-radius: 8px;
+    cursor: pointer;
+
+    span.current {
+        font-weight: 400;
+        font-size: .95rem;
+        color: $clr-gray-2;
+    }
+}

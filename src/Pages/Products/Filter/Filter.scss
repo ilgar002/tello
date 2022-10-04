@@ -1,0 +1,59 @@
+@import "../../../Scss/variables.scss";
+
+.side-filter {
+    max-width: 300px;
+    width: 23%;
+
+    .filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        border-bottom: 1px solid $clr-gray-4;
+
+        .sortBy {
+            font-weight: 500;
+            font-size: 1rem;
+            color: $clr-gray-2;
+        }
+
+        button.toggle {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .options-dropdown {
+        padding: 32px 10px;
+
+        ul.options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            li.option {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                input {
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                    outline: none;
+                    border: 1px solid $clr-default;
+                    border-radius: 3px;
+                }
+
+                label {
+                    font-weight: 400;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}

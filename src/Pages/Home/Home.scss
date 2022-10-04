@@ -1,0 +1,13 @@
+@import "../../Scss/variables.scss";
+
+main.home {
+    background-color: #fff;
+}
+
+@media(max-width:576px) {
+    main.home {
+        .container {
+            padding: 0 16px;
+        }
+    }
+}

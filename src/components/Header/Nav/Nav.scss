@@ -6,26 +6,26 @@ nav {
         gap: 56px;
 
         li.link {
-            white-space: nowrap;
-            color: $clr-gray-2;
-            font-size: 1.1rem;
-            font-weight: 400;
-            // cursor: pointer;
-            transition: all .1s ease;
             padding-bottom: 12px;
-            text-transform: capitalize;
 
-            span {
+            a {
                 cursor: pointer;
-            }
+                color: $clr-gray-2;
+                white-space: nowrap;
+                font-size: 1.1rem;
+                font-weight: 400;
+                transition: all .1s ease;
+                text-transform: capitalize;
 
-            &:hover {
-                color: $clr-default;
-
-                .dropdown-menu {
-                    display: block;
+                &:hover {
+                    color: $clr-default;
                 }
             }
+
+            .dropdown-menu {
+                display: block;
+            }
+
         }
     }
 }

@@ -1,44 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Nav.scss";
-import DropdownMenu from './DropdownMenu/Dropdown';
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { getCategorieNames } from '../../../store/actions/categories';
+// import DropdownMenu from './DropdownMenu/Dropdown';
 
 const Nav = () => {
-    return (
-        <nav>
-            <ul className="nav-links">
-                <li className='link'>
-                    <span>
-                        Mobil Telefonlar
-                    </span>
-                    <DropdownMenu />
-                </li>
-                <li className='link'>
-                    <span>
-                        Aksesuarlar
-                    </span>
-                    <DropdownMenu />
-                </li>
-                <li className='link'>
-                    <span>
-                        Noutbuklar
-                    </span>
-                    <DropdownMenu />
-                </li>
-                <li className='link'>
-                    <span>
-                        Bütün Brendlər
-                    </span>
-                    <DropdownMenu />
-                </li>
-                <li className='link'>
-                    <span>
-                        Endirimlər
-                    </span>
-                    <DropdownMenu />
-                </li>
-            </ul>
-        </nav>
-    )
+    const { categories, loading } = useSelector((state) => state.categories)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getCategorieNames())
+    }, [dispatch])
+    if (!loading) {
+        return (
+            <nav>
+                <ul className="nav-links">
+                    {categories.slice(0, 5).map((el) => {
+                        return <li key={el.id} className='link'>
+                            <Link to={`products/${el.slug}`}>
+                                {el.name}
+                            </Link>
+                            {/* <DropdownMenu /> */}
+                        </li>
+                    })}
+                </ul>
+            </nav>
+        )
+    }
+
 }
 
 export default Nav

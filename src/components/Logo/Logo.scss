@@ -1,13 +1,15 @@
 @import"../../Scss/variables.scss";
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
 
-    .logo-title {
-        color: $clr-default;
-        font-weight: 500;
-        font-size: 2rem;
+        .logo-title {
+            color: $clr-default;
+            font-weight: 500;
+            font-size: 2rem;
+        }
     }
 }

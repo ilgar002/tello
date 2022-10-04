@@ -9,6 +9,7 @@
     height: 40px;
     max-width: 590px;
     width: 590px;
+    position: relative;
 
     .search-input {
         background-color: transparent;
@@ -26,10 +27,83 @@
             color: $clr-gray-3;
         }
     }
+
+    .focus-dropdown {
+        background-color: #fff;
+        padding: 24px 25px 28px 25px;
+        border: 1px solid #F5F5F5;
+        border-radius: 0.5rem;
+        width: 100%;
+        position: absolute;
+        z-index: 101;
+        left: 0;
+        bottom: -5px;
+        transform: translateY(100%);
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .title {
+                font-weight: 500;
+                font-size: 1.1rem;
+                color: $clr-gray-2;
+            }
+
+            button.clear {
+                font-weight: 400;
+                font-size: 0.9rem;
+                color: $clr-gray-3;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+        }
+
+        .searchs {
+            padding-top: 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            overflow-x: scroll;
+
+            .search {
+                background-color: $clr-basic-300;
+                border-radius: 4px;
+                padding: 2px 6px;
+                font-weight: 400;
+                font-size: .9rem;
+                color: $clr-gray-2;
+                white-space: nowrap;
+                cursor: pointer;
+            }
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+        }
+    }
 }
 
-@media(max-width:576px){
-    .search-form{
+@media(max-width:576px) {
+    .search-form {
         order: 1;
+        .focus-dropdown{
+            .row{
+                .title{
+                    font-size: 1rem;
+                }
+                button.clear{
+                    font-size: 0.8rem;
+                }
+                .searchs{
+                    .search{
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
     }
 }

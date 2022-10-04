@@ -1,0 +1,58 @@
+@import '../../../Scss/variables.scss';
+
+.products-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 44px;
+
+    .product-list {
+        padding: 32px 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        width: 100%;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .products-title {
+        font-weight: 500;
+        font-size: 1.4rem;
+        color: $clr-gray-1;
+    }
+
+    .see-all {
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: $clr-gray-1;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+    }
+}
+
+@media(max-width:576px) {
+    .products-section {
+        .product-list {
+            width: 100%;
+            gap: 16px;
+            padding: 24px 0;
+        }
+
+        .see-all {
+            order: 1;
+            font-weight: 500;
+            font-size: .9rem;
+        }
+
+        .products-title {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+    }
+}
