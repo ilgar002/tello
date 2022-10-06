@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../store/actions/cart';
 import "./Features.scss";
 import ManatIcon from '../../../images/manat-icon.svg';
 import CartIcon from "../../../images/cart.svg"
 
 
-const Features = ({ productName, price, variants }) => {
+const Features = ({ productName, price, variants, id }) => {
+  const dispatch = useDispatch()
   const [quantity, setQuantity] = useState(1)
   const onClickDecrement = () => {
     if (quantity > 1) {
@@ -16,7 +19,12 @@ const Features = ({ productName, price, variants }) => {
       setQuantity((prev) => prev + 1)
     }
   }
-  // console.log(variants);
+  const onClickAddBasket = () => {
+    dispatch(addToCart({
+      product_id: id,
+      quantity: quantity,
+    }))
+  }
   return (
     <div className='features'>
       <h4 className='product-name'>
@@ -51,7 +59,7 @@ const Features = ({ productName, price, variants }) => {
         <span className='current'>{quantity}</span>
         <button onClick={onClickIncrement} className="increment">+</button>
       </div>
-      <button className="addBasket">
+      <button onClick={onClickAddBasket} className="addBasket">
         <img src={CartIcon} alt="cart" />
         Səbətə at
       </button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Search from './Search/Search';
 import Nav from './Nav/Nav';
@@ -16,15 +17,15 @@ const Header = () => {
             <div className="hamburger-button">
                 <img src={Hamburger} alt="hamburger" />
             </div>
-            <Logo/>
+            <Logo />
             <Search />
             <div className="user-block">
                 <img className='person' src={PersonIcon} alt="person" />
                 <img src={HeartIcon} alt="heart" />
-                <div className="basket">
+                <Link to={"/cart"} className='basket'>
                     <img src={BasketIcon} alt="basket" />
                     <div className="basket-count">0</div>
-                </div>
+                </Link>
             </div>
             <Nav />
         </header>

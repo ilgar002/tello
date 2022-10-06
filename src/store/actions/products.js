@@ -73,5 +73,15 @@ export const getProduct = createAsyncThunk('name/getProduct',
         }
     })
 
+export const getVariants = createAsyncThunk('name/getVariants',
+    async (id) => {
+        try {
+            const response = await commerce.products.getVariants(id)
+            return response;
+        }
+        catch (err) {
+            return err.message
+        }
+    })
 
 

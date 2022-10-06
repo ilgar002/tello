@@ -13,6 +13,7 @@ const Products = () => {
     const { products, loading } = useSelector((state) => state.products)
     const dispatch = useDispatch()
     const categorie = useParams().slug
+    window.scrollTo(0, 0)
     useEffect(() => {
         dispatch(getAllProducts({
             category_slug: [categorie],
@@ -26,12 +27,6 @@ const Products = () => {
     }
     categorieName = categorieName.join(" ")
     console.log(categorieName);
-    // let result = ''
-    // for (let i = 0; i < categorieName.length; i++) {
-    //     result += ` ${categorieName[i]}`
-    // }
-    // console.log(result);
-
     return (
         <main className="products">
             <div className='container'>

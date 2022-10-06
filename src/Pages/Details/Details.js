@@ -20,7 +20,6 @@ const Details = () => {
         dispatch(getProduct(id))
     }, [dispatch, id])
     return (
-
         <main className='details'>
             {loading ? <Loading /> : <div className="container">
                 <Direction
@@ -36,6 +35,7 @@ const Details = () => {
                         variants={product.variant_groups}
                         productName={product?.name}
                         price={product?.price?.raw}
+                        id={product.id}
                     />
                 </div>
             </div>}

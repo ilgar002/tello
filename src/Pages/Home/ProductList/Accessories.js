@@ -29,7 +29,7 @@ const Accessories = () => {
                         <Skeleton />
                     </>
                     :
-                    products?.slice(0, 6)?.map((el) => {
+                    products?.slice(0, 6).map((el) => {
                         return <Product
                             key={el.id}
                             id={el.id}
