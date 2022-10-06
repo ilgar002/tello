@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Summary.scss";
 
-const Summary = () => {
+const Summary = ({cart}) => {
     return (
         <div className='cart-summary'>
             <span className="title">
@@ -10,7 +10,7 @@ const Summary = () => {
             <ul>
                 <li>
                     Məbləğ
-                    <span className="value">66.50 AZN</span>
+                    <span className="value">{cart.subtotal?.raw} AZN</span>
                 </li>
                 <li>
                     Çatdırılma
@@ -28,7 +28,7 @@ const Summary = () => {
             <span className="total">
                 Cəmi
                 <span className="value">
-                    61.50 AZN
+                    {cart.subtotal?.raw} AZN
                 </span>
             </span>
         </div>

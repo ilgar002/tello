@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getCart } from '../../store/actions/cart';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Search from './Search/Search';
@@ -12,6 +14,12 @@ import Hamburger from '../../images/hamburger.svg';
 
 
 const Header = () => {
+    const { cart, loading } = useSelector((state) => state.cart)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getCart())
+    }, [dispatch])
+    console.log(cart);
     return (
         <header>
             <div className="hamburger-button">
@@ -24,7 +32,7 @@ const Header = () => {
                 <img src={HeartIcon} alt="heart" />
                 <Link to={"/cart"} className='basket'>
                     <img src={BasketIcon} alt="basket" />
-                    <div className="basket-count">0</div>
+                    <div className="basket-count">{loading ? "..." : cart.total_items}</div>
                 </Link>
             </div>
             <Nav />

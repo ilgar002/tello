@@ -5,7 +5,7 @@ import getBestSellersReducer from './reducers/getBestSellersReducer';
 import getAccessoriesReducer from './reducers/getAccessoriesReducer';
 import getCategorieNamesReducer from './reducers/getCategorieNamesReducer';
 import getProductReducer from './reducers/getProductReducer';
-import getCartContents from './reducers/getCartContents';
+import getCartReducer from './reducers/getCartReducer';
 
 
 
@@ -17,6 +17,6 @@ export const store = configureStore({
         accessories: getAccessoriesReducer,
         categories: getCategorieNamesReducer,
         product: getProductReducer,
-        cart: getCartContents,
+        cart: getCartReducer,
     },
 })

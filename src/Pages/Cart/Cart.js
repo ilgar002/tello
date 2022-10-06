@@ -1,28 +1,34 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCartContents } from '../../store/actions/cart';
+import { getCart } from '../../store/actions/cart';
 import Loading from '../../components/Loading/Spinner/Spinner'
 import "./Cart.scss";
 import Item from './Item/Item';
 import Summary from './Summary/Summary';
+import EmptyCart from './EmptyCart/EmptyCart';
 
 const Cart = () => {
     const dispatch = useDispatch()
+
     const { cart, loading } = useSelector((state) => state.cart)
     useEffect(() => {
-        dispatch(getCartContents())
-    }, [dispatch, cart.length])
-    console.log(cart);
+        dispatch(getCart())
+    }, [dispatch])
+    if (loading) {
+        return <Loading />
+    }
+    if (!loading && cart.total_items === 0) {
+        return <EmptyCart />
+    }
     return (
         <main className="cart">
-
-            {loading ? <Loading /> : <div className="container">
+            <div className="container">
                 <div className="cart-product-number">
-                    Səbət (5 məhsul)
+                    Səbət ({cart.total_items} məhsul)
                 </div>
                 <div className="s-container">
                     <div className="items">
-                        {cart?.map((el) => {
+                        {cart?.line_items?.map((el) => {
                             return <Item
                                 key={el.id}
                                 item_id={el.id}
@@ -35,10 +41,9 @@ const Cart = () => {
 
                         })}
                     </div>
-                    <Summary />
+                    <Summary cart={cart} />
                 </div>
-            </div>}
-
+            </div>
         </main>
     )
 }
