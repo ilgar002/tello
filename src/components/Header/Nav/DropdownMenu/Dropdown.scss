@@ -1,7 +1,7 @@
 @import "../../../../Scss/variables.scss";
+
 .dropdown-menu {
     position: absolute;
-    display: none;
     left: 0;
     top: 100%;
     width: 100%;
@@ -12,7 +12,8 @@
 
     .row {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
+        gap: 50px;
 
         .column {
             display: flex;
@@ -20,12 +21,17 @@
             gap: 8px;
 
             .column-title {
-                font-weight: 500;
-                font-size: 1.1rem;
+                font-weight: 400;
+                font-size: 1.05rem;
                 color: $clr-gray-2;
                 margin-bottom: 8px;
                 text-transform: capitalize;
+                transition: all .1s ease;
                 cursor: pointer;
+
+                &:hover {
+                    color: $clr-default;
+                }
             }
 
             .column-subtitle {

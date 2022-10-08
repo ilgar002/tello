@@ -28,7 +28,7 @@
         }
     }
 
-    .focus-dropdown {
+    .dropdown {
         background-color: #fff;
         padding: 24px 25px 28px 25px;
         border: 1px solid #F5F5F5;
@@ -61,28 +61,45 @@
             }
         }
 
-        .searchs {
-            padding-top: 18px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            overflow-x: scroll;
+        &.focus-dropdown {
+            .searchs {
+                padding-top: 18px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                overflow-x: scroll;
 
-            .search {
-                background-color: $clr-basic-300;
-                border-radius: 4px;
-                padding: 2px 6px;
-                font-weight: 400;
-                font-size: .9rem;
-                color: $clr-gray-2;
-                white-space: nowrap;
-                cursor: pointer;
+                .search {
+                    background-color: $clr-basic-300;
+                    border-radius: 4px;
+                    padding: 2px 6px;
+                    font-weight: 400;
+                    font-size: .9rem;
+                    color: $clr-gray-2;
+                    white-space: nowrap;
+                    cursor: pointer;
+                }
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
             }
+        }
 
-            &::-webkit-scrollbar {
-                display: none;
+        &.typing-dropdown {
+            .results {
+                margin-top: 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                max-height: 280px;
+                overflow-y: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
             }
-
         }
     }
 }
@@ -90,16 +107,19 @@
 @media(max-width:576px) {
     .search-form {
         order: 1;
-        .focus-dropdown{
-            .row{
-                .title{
+
+        .focus-dropdown {
+            .row {
+                .title {
                     font-size: 1rem;
                 }
-                button.clear{
+
+                button.clear {
                     font-size: 0.8rem;
                 }
-                .searchs{
-                    .search{
+
+                .searchs {
+                    .search {
                         font-size: 0.8rem;
                     }
                 }

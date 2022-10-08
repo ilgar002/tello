@@ -10,7 +10,7 @@ import Product from '../../components/Product/Product';
 import Skeleton from "../../components/Skeleton/Product/Product";
 
 const Products = () => {
-    const { products, loading } = useSelector((state) => state.products)
+    const { allProducts, loading } = useSelector((state) => state.allProducts)
     const dispatch = useDispatch()
     const categorie = useParams().slug
     window.scrollTo(0, 0)
@@ -26,17 +26,16 @@ const Products = () => {
         categorieName[i] = categorieName[i].charAt(0).toUpperCase() + categorieName[i].slice(1);
     }
     categorieName = categorieName.join(" ")
-    console.log(categorieName);
     return (
         <main className="products">
             <div className='container'>
-                <Direction categorie={categorieName} />
+                <Direction categorie={{ name: categorieName, slug: categorie }} />
                 <div className="product-list-wrapper">
                     <Filter />
                     <div className="product-list">
                         <div className="row">
                             <span className="product-number">
-                                {loading ? "Məhsullar axtarılır..." : `${products.length} məhsul tapıldı`}
+                                {loading ? "Məhsullar axtarılır..." : `${allProducts.length} məhsul tapıldı`}
                             </span>
                             <Order />
                         </div>
@@ -48,7 +47,7 @@ const Products = () => {
                                 <Skeleton />
                                 <Skeleton />
                                 <Skeleton />
-                            </> : products.map((el) => {
+                            </> : allProducts.map((el) => {
                                 return <Product
                                     key={el.id}
                                     id={el.id}

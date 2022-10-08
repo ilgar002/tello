@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getAllProducts } from '../actions/products';
 
 const initState = {
-    products: [],
+    allProducts: [],
     loading: false,
     errors: null,
 }
 
-const fetchProductsSlice = createSlice({
+const getAllProductsSlice = createSlice({
     name: 'fetchProducts',
     initialState: initState,
     extraReducers: {
@@ -20,9 +20,9 @@ const fetchProductsSlice = createSlice({
         },
         [getAllProducts.fulfilled]: (state, { payload }) => {
             state.loading = false
-            state.products = payload
+            state.allProducts = payload
         },
     }
 })
 
-export default fetchProductsSlice.reducer;
+export default getAllProductsSlice.reducer;

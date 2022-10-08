@@ -18,7 +18,6 @@ export const getBestSellers = createAsyncThunk('name/getBestSellers',
             const response = await commerce.products.list({
                 limit: 50,
             });
-            console.log(response.data);
             let currentIndex = response.data.length, randomIndex;
             while (currentIndex !== 0) {
                 randomIndex = Math.floor(Math.random() * currentIndex);

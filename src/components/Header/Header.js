@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { getCart } from '../../store/actions/cart';
+import { getAllProducts } from '../../store/actions/products';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
@@ -10,6 +11,7 @@ import PersonIcon from '../../images/person-icon.svg';
 import HeartIcon from '../../images/heart-icon.svg';
 import BasketIcon from '../../images/basket-icon.svg';
 import Hamburger from '../../images/hamburger.svg';
+import InfinityLoading from '../../images/infinity-loading-icon.gif';
 
 
 
@@ -18,8 +20,8 @@ const Header = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCart())
+        dispatch(getAllProducts({ limit: 200 }))
     }, [dispatch])
-    console.log(cart);
     return (
         <header>
             <div className="hamburger-button">
@@ -32,7 +34,9 @@ const Header = () => {
                 <img src={HeartIcon} alt="heart" />
                 <Link to={"/cart"} className='basket'>
                     <img src={BasketIcon} alt="basket" />
-                    <div className="basket-count">{loading ? "..." : cart.total_items}</div>
+                    {loading ? <img src={InfinityLoading} alt="loading..." /> :
+                        <div className="basket-count">{cart.total_items}</div>
+                    }
                 </Link>
             </div>
             <Nav />

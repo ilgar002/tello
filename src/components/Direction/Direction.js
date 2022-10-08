@@ -1,5 +1,6 @@
 import React from 'react';
 import './Direction.scss';
+import { Link } from 'react-router-dom';
 import RightArrow from '../../images/right-arrow.svg';
 
 const Direction = ({ categories, categorie }) => {
@@ -7,19 +8,21 @@ const Direction = ({ categories, categorie }) => {
         <div className="direction">
             <ul>
                 <li className='category'>
-                    <a href="/">Ana səhifə</a>
+                    <Link to={'/'}>
+                        Ana səhifə
+                    </Link>
                 </li>
                 {categorie ? <li className='sub-category'>
                     <img src={RightArrow} alt="arrow" />
-                    <a href="/">
-                        {categorie}
-                    </a>
+                    <Link to={`/products/${categorie.slug}`}>
+                        {categorie.name}
+                    </Link>
                 </li> : categories?.map((el) => {
                     return <li key={el.id} className='sub-category'>
                         <img src={RightArrow} alt="arrow" />
-                        <a href="/">
+                        <Link to={`/products/${el.slug}`}>
                             {el.name}
-                        </a>
+                        </Link>
                     </li>
                 })}
             </ul>

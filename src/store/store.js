@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import fetchProductsReducer from './reducers/fetchProductsReducer';
+import getAllProducts from './reducers/getAllProductsReducer';
 import getNewsReducer from './reducers/getNewsReducer';
 import getBestSellersReducer from './reducers/getBestSellersReducer';
 import getAccessoriesReducer from './reducers/getAccessoriesReducer';
@@ -11,7 +11,7 @@ import getCartReducer from './reducers/getCartReducer';
 
 export const store = configureStore({
     reducer: {
-        products: fetchProductsReducer,
+        allProducts: getAllProducts,
         news: getNewsReducer,
         bestSellers: getBestSellersReducer,
         accessories: getAccessoriesReducer,

@@ -21,7 +21,6 @@ const getProductSlice = createSlice({
         },
         [getProduct.fulfilled]: (state, { payload }) => {
             state.loading = false
-            console.log(payload);
             state.product = payload
         },
     }
