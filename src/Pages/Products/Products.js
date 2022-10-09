@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Products.scss";
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
@@ -7,25 +7,59 @@ import Direction from "../../components/Direction/Direction";
 import Filter from './Filter/Filter';
 import Order from "./Order/Order";
 import Product from '../../components/Product/Product';
+import Pagination from './Pagination/Pagination'
 import Skeleton from "../../components/Skeleton/Product/Product";
 
 const Products = () => {
+    const options = [
+        {
+            label: 'Ən yenilər',
+            actions: {
+                sortBy: "created",
+                sortDirection: 'desc',
+            }
+        },
+        {
+            label: 'Ada görə',
+            actions: {
+                sortBy: "name",
+                sortDirection: 'desc',
+            }
+        },
+        {
+            label: 'Qiymətə görə',
+            actions: {
+                sortBy: "price",
+                sortDirection: 'desc',
+            }
+        }
+    ]
     const { allProducts, loading } = useSelector((state) => state.allProducts)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [currentOption, setCurrentOption] = useState(options[0])
+
+
     const dispatch = useDispatch()
     const categorie = useParams().slug
     window.scrollTo(0, 0)
     useEffect(() => {
         dispatch(getAllProducts({
             category_slug: [categorie],
-            limit: 50,
+            limit: 3,
+            page: currentPage,
+            sortBy: currentOption.actions.sortBy,
+            sortDirection: currentOption.actions.sortDirection,
         }))
-    }, [categorie, dispatch])
-
+    }, [categorie, dispatch, currentPage, currentOption])
+    console.log(currentPage);
     let categorieName = categorie.split('-')
     for (var i = 0; i < categorieName.length; i++) {
         categorieName[i] = categorieName[i].charAt(0).toUpperCase() + categorieName[i].slice(1);
     }
     categorieName = categorieName.join(" ")
+
+
+
     return (
         <main className="products">
             <div className='container'>
@@ -35,9 +69,13 @@ const Products = () => {
                     <div className="product-list">
                         <div className="row">
                             <span className="product-number">
-                                {loading ? "Məhsullar axtarılır..." : `${allProducts.length} məhsul tapıldı`}
+                                {loading ? "Məhsullar axtarılır..." : `${allProducts.meta?.pagination.total} məhsul tapıldı`}
                             </span>
-                            <Order />
+                            <Order
+                                currentOption={currentOption}
+                                setCurrentOption={setCurrentOption}
+                                options={options}
+                            />
                         </div>
                         <div className="product-wrapper">
                             {loading ? <>
@@ -47,7 +85,7 @@ const Products = () => {
                                 <Skeleton />
                                 <Skeleton />
                                 <Skeleton />
-                            </> : allProducts.map((el) => {
+                            </> : allProducts.data?.map((el) => {
                                 return <Product
                                     key={el.id}
                                     id={el.id}
@@ -57,6 +95,11 @@ const Products = () => {
                                 />
                             })}
                         </div>
+                        {loading || <Pagination
+                            data={allProducts?.meta?.pagination}
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                        />}
                     </div>
                 </div>
 

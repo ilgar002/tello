@@ -51,10 +51,10 @@ const Search = () => {
     }, [searchs])
     useEffect(() => {
         inputValue.length > 0 ? setTypingDropdown(true) : setTypingDropdown(false)
-        const results = allProducts.filter((el) => el.name.toLowerCase().includes(inputValue.toLowerCase()))
+        const results = allProducts.data?.filter((el) => el.name.toLowerCase().includes(inputValue.toLowerCase()))
         setResults(results)
         setFocusDropdown(false)
-    }, [inputValue,allProducts])
+    }, [inputValue, allProducts])
 
     return (
         <form ref={formRef} onSubmit={onSubmitForm} className='search-form'>

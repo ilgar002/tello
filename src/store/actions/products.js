@@ -5,7 +5,7 @@ export const getAllProducts = createAsyncThunk('name/getAllProducts',
     async (params) => {
         try {
             const response = await commerce.products.list(params);
-            return response.data;
+            return response;
         }
         catch (err) {
             return err.message
