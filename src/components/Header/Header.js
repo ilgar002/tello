@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { getCart } from '../../store/actions/cart';
-import { getAllProducts } from '../../store/actions/products';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
@@ -11,7 +10,7 @@ import PersonIcon from '../../images/person-icon.svg';
 import HeartIcon from '../../images/heart-icon.svg';
 import BasketIcon from '../../images/basket-icon.svg';
 import Hamburger from '../../images/hamburger.svg';
-import InfinityLoading from '../../images/infinity-loading-icon.gif';
+import InfinityLoading from '../../images/infinity-loading-icon.svg';
 
 
 
@@ -20,7 +19,6 @@ const Header = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCart())
-        dispatch(getAllProducts({ limit: 200 }))
     }, [dispatch])
     return (
         <header>

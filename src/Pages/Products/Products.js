@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Products.scss";
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from '../../store/actions/products';
 import Direction from "../../components/Direction/Direction";
@@ -34,8 +34,9 @@ const Products = () => {
             }
         }
     ]
+    const [searchParams, setSearchParams] = useSearchParams();
     const { allProducts, loading } = useSelector((state) => state.allProducts)
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1)
     const [currentOption, setCurrentOption] = useState(options[0])
 
 
@@ -51,7 +52,13 @@ const Products = () => {
             sortDirection: currentOption.actions.sortDirection,
         }))
     }, [categorie, dispatch, currentPage, currentOption])
-    console.log(currentPage);
+
+    useEffect(() => {
+        setSearchParams({ page: currentPage });
+    }, [searchParams, currentPage, setSearchParams])
+
+
+    // console.log(currentPage);
     let categorieName = categorie.split('-')
     for (var i = 0; i < categorieName.length; i++) {
         categorieName[i] = categorieName[i].charAt(0).toUpperCase() + categorieName[i].slice(1);

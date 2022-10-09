@@ -1,21 +1,45 @@
-import React, { useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useRef, useEffect } from 'react';
+import { commerce } from '../../../commerce';
 import './Search.scss';
 import SearchIcon from "../../../images/search-icon.svg";
 import Result from './Result/Result';
-import { useEffect } from 'react';
-
-
+import { DebounceInput } from 'react-debounce-input';
+import ResultSkeleton from '../../Skeleton/Result/Result';
 
 const Search = () => {
     let recentSearchs = localStorage.getItem('recentSearchs');
     const [inputValue, setInputValue] = useState('')
     const [focusDropdown, setFocusDropdown] = useState(false)
     const [typingDropdown, setTypingDropdown] = useState(false)
-    const { allProducts } = useSelector((state) => state.allProducts)
     const [results, setResults] = useState([])
+    const [loading, setLoading] = useState(false)
     const [searchs, setSearchs] = useState(recentSearchs ? JSON.parse(recentSearchs) : [])
     const formRef = useRef()
+
+    useEffect(() => {
+        if (inputValue.length > 0) {
+            getResults(inputValue)
+            setTypingDropdown(true)
+            setFocusDropdown(false)
+        }
+        else {
+            setTypingDropdown(false)
+        }
+    }, [inputValue])
+    useEffect(() => {
+        localStorage.setItem("recentSearchs", JSON.stringify(searchs))
+    }, [searchs])
+    const getResults = async (query) => {
+        try {
+            setLoading(true)
+            const response = await commerce.products.list({ query: query });
+            setResults(response.data)
+        }
+        catch (err) {
+            return err.message
+        }
+        setLoading(false)
+    }
     const onChangeHandler = (e) => {
         setInputValue(e.target.value)
         window.addEventListener('click', handleClickOutside)
@@ -46,20 +70,20 @@ const Search = () => {
         setInputValue('')
         setTypingDropdown(false)
     }
-    useEffect(() => {
-        localStorage.setItem("recentSearchs", JSON.stringify(searchs))
-    }, [searchs])
-    useEffect(() => {
-        inputValue.length > 0 ? setTypingDropdown(true) : setTypingDropdown(false)
-        const results = allProducts.data?.filter((el) => el.name.toLowerCase().includes(inputValue.toLowerCase()))
-        setResults(results)
-        setFocusDropdown(false)
-    }, [inputValue, allProducts])
 
     return (
         <form ref={formRef} onSubmit={onSubmitForm} className='search-form'>
             <img src={SearchIcon} alt="search" />
-            <input value={inputValue} onChange={onChangeHandler} onFocus={onFocusHandler} className='search-input' type="text" placeholder='Axtarış...' />
+            <DebounceInput
+                className='search-input'
+                type="text"
+                placeholder='Axtarış...'
+                value={inputValue}
+                minLength={2}
+                debounceTimeout={1000}
+                onChange={onChangeHandler}
+                onFocus={onFocusHandler}
+            />
             {focusDropdown &&
                 <div className="focus-dropdown dropdown">
                     <div className="row">
@@ -85,18 +109,24 @@ const Search = () => {
                         Təmizlə
                     </button>
                 </div>
-                <div className="results">
-                    {results?.map((el) => {
-                        return <Result
-                            key={el.id}
-                            id={el.id}
-                            image={el.image.url}
-                            name={el.name}
-                            price={el.price.raw}
-                            setTypingDropdown={setTypingDropdown}
-                        />
-                    })}
-                </div>
+                {loading ?
+                    <div className='resultsSkeleton'>
+                        <ResultSkeleton />
+                        <ResultSkeleton />
+                        <ResultSkeleton />
+                    </div>
+                    : <div className="results">
+                        {results?.map((el) => {
+                            return <Result
+                                key={el.id}
+                                id={el.id}
+                                image={el.image.url}
+                                name={el.name}
+                                price={el.price.raw}
+                                setTypingDropdown={setTypingDropdown}
+                            />
+                        })}
+                    </div>}
             </div>}
 
         </form>
