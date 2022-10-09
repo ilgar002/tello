@@ -1,0 +1,136 @@
+.banners-section {
+    display: flex;
+    gap: 32px;
+    margin: 32px 0;
+
+    .banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: .5rem;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%),
+            0 4px 6px -4px rgb(0 0 0 / 10%);
+        padding: 1rem 2rem;
+        flex: 1;
+
+        .column {
+            width: 45%;
+
+            .banner-text {
+                h6 {
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                    line-height: 1;
+                }
+            }
+
+            .price {
+                font-size: 1.1rem;
+                padding: 15px 0;
+
+                .details {
+                    color: #989898;
+                }
+            }
+
+            button.now-buy {
+                background-color: transparent;
+                border: 1px solid #828282;
+                border-radius: 50px;
+                color: #828282;
+                cursor: pointer;
+                font-size: 1.1rem;
+                padding: 5px 25px;
+                white-space: nowrap;
+            }
+        }
+
+        .banner-img {
+            width: 215px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        &.airtag {
+            background-color: #F6F6F6;
+            text-align: center;
+
+            .banner-text {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                span {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .apple-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .air-tag {
+                padding-bottom: 20px;
+            }
+
+            .banner-text {
+                h6 {
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    .banners-section {
+        flex-direction: column;
+        gap: 24px;
+
+        .banner {
+            padding: 1rem 1rem;
+
+            .column {
+                width: 60%;
+
+                .banner-text {
+                    h6 {
+                        font-size: 1.1rem;
+                    }
+                }
+
+                .price {
+                    font-size: 1rem;
+
+                    .details {
+                        font-size: 0.75rem;
+                        white-space: nowrap;
+                    }
+                }
+
+                button.now-buy {
+                    font-size: .8rem;
+                }
+            }
+
+            .banner-img {
+                width: 180px;
+            }
+
+            &.airtag {
+                .banner-text {
+                    gap: 12px;
+
+                    h6 {
+                        font-size: .9rem;
+                    }
+                }
+            }
+        }
+    }
+}

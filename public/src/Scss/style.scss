@@ -1,0 +1,9 @@
+@import './helper.scss';
+@import './reset.scss';
+@import './variables.scss';
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 95%;
+}
