@@ -7,6 +7,7 @@ import Details from "./Pages/Details/Details";
 import Cart from './Pages/Cart/Cart';
 import Footer from './components/Footer/Footer';
 import SearchResults from './Pages/SearchResults/SearchResults';
+import Questions from './Pages/Questions/Questions';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/details/:id' element={<Details />} />
         <Route path='/search-results/:query' element={<SearchResults />} />
+        <Route path='/questions' element={<Questions />} />
       </Routes>
       <Footer />
     </>

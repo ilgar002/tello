@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.scss';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Socials from './Socials/Socials';
 import Location from "../../images/location.svg";
@@ -38,7 +39,9 @@ const Footer = () => {
                     <h5 className="column-title">Kömək</h5>
                     <ul className='footer-column'>
                         <li>
-                            <a href="/">Tez-tez soruşulan suallar</a>
+                            <Link to={'/questions'}>
+                                Tez-tez soruşulan suallar
+                            </Link>
                         </li>
                         <li>
                             <a href="/">Çatdırılma xidməti</a>

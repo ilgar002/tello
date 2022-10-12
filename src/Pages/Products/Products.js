@@ -70,7 +70,7 @@ const Products = () => {
     return (
         <main className="products">
             <div className='container'>
-                <Direction categorie={{ name: categorieName, slug: categorie }} />
+                <Direction categorie={{ name: categorieName, slug: `/products/${categorie}` }} />
                 <div className="product-list-wrapper">
                     <Filter />
                     <div className="product-list">

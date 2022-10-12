@@ -1,0 +1,25 @@
+.questions-section {
+    padding: 26px 0 48px 0;
+
+    .direction {
+        margin-bottom: 40px;
+    }
+
+    .title {
+        font-weight: 500;
+        font-size: 1.5rem;
+        color: #1D2123;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+
+    .questions {
+        width: 75%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+    }
+}

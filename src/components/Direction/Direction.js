@@ -14,7 +14,7 @@ const Direction = ({ categories, categorie }) => {
                 </li>
                 {categorie ? <li className='sub-category'>
                     <img src={RightArrow} alt="arrow" />
-                    <Link to={`/products/${categorie.slug}`}>
+                    <Link to={`${categorie.slug}`}>
                         {categorie.name}
                     </Link>
                 </li> : categories?.map((el) => {

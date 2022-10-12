@@ -1,0 +1,31 @@
+@import "../../../Scss/variables.scss";
+
+.question-item {
+    padding: 14px 24px;
+    background: #F1F1F1;
+    border-radius: 8px;
+
+    .question {
+        font-weight: 500;
+        font-size: .95rem;
+        line-height: 1.25rem;
+        color: $clr-gray-2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+
+        img {
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+    }
+
+    .answer {
+        padding: 32px 24px 18px 24px;
+        font-weight: 400;
+        font-size: .95rem;
+        line-height: 1.25rem;
+        color: $clr-gray-2;
+    }
+}
