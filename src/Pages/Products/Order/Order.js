@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import './Order.scss';
 import DownIcon from '../../../images/down-icon.svg';
 
-const Order = ({ currentOption, setCurrentOption, options, setCurrentPage }) => {
+const Order = ({ currentOption, setCurrentOption, options, searchParams, setSearchParams }) => {
     const [dropdownVisibility, setDropdownVisibility] = useState(false)
-    const [searchParams, setSearchParams] = useSearchParams();
-
     const onClickOption = (option) => {
         setCurrentOption(option)
         const params = Object.fromEntries([...searchParams])
-        setSearchParams({ ...params, sortBy: option.actions.sortBy })
-        setCurrentPage(1)
+        setSearchParams({ ...params, page: 1, sortBy: option.actions.sortBy })
     }
     return (
         <div onClick={() => setDropdownVisibility((prev) => !prev)} className="orderBy">

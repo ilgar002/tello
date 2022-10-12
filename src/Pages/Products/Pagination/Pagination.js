@@ -2,16 +2,23 @@ import React from 'react';
 import './Pagination.scss';
 import { FiChevronLeft } from 'react-icons/fi';
 
-const Pagination = ({ data, currentPage, setCurrentPage }) => {
+const Pagination = ({ data, currentPage, searchParams, setSearchParams }) => {
     const totalPages = new Array(data?.total_pages).fill()
     const onClickPage = (page) => {
-        setCurrentPage(page)
+        const params = Object.fromEntries([...searchParams])
+        setSearchParams({ ...params, page: page })
     }
     const onClickNext = () => {
-        currentPage !== data?.total_pages && setCurrentPage((prev) => prev + 1)
+        if (currentPage !== data?.total_pages) {
+            const params = Object.fromEntries([...searchParams])
+            setSearchParams({ ...params, page: currentPage + 1 })
+        }
     }
     const onClickPrev = () => {
-        currentPage !== 1 && setCurrentPage((prev) => prev - 1)
+        if (currentPage !== 1) {
+            const params = Object.fromEntries([...searchParams])
+            setSearchParams({ ...params, page: currentPage - 1 })
+        }
     }
     return (
         <div className='pagination'>

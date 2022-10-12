@@ -24,6 +24,7 @@ export default class CenterMode extends Component {
             slidesToShow: 1,
             slidesToScroll: 1,
             fade: true,
+            autoplay: true,   
         };
         return (
             <div className="product-slider">

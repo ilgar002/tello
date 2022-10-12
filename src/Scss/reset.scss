@@ -1,14 +1,19 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    &::selection {
+        color: #fff;
+        background: #2DD06E;
+    }
 }
 
 
-li{
+li {
     list-style-type: none;
 }
 
-a{
+a {
     text-decoration: none;
 }

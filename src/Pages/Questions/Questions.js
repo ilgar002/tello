@@ -4,6 +4,7 @@ import Direction from '../../components/Direction/Direction';
 import Question from './Question/Question';
 
 const Questions = () => {
+    window.scrollTo(0, 0)
 
     return (
         <div className='questions-section'>

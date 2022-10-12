@@ -37,10 +37,15 @@
         width: 25px;
         height: 25px;
         z-index: 100;
+        transform: rotate(180deg);
 
         &::before {
-            font-size: 25px;
-            color: black;
+            font-size: 35px;
+            color: transparent;
+            background-image: url('../../../images/details-arrow.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
         }
     }
 
@@ -51,8 +56,15 @@
         z-index: 100;
 
         &::before {
-            font-size: 25px;
-            color: black;
+            font-size: 35px;
+            color: transparent;
+            background-image: url('../../../images/details-arrow.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
         }
+    }
+    .slick-next,.slick-prev{
+        top: 45%;
     }
 }

@@ -33,8 +33,8 @@ const SearchResults = () => {
     }, [query, currentPage, getResults])
 
     useEffect(() => {
-        setSearchParams({ page: currentPage });
-    }, [searchParams, currentPage, setSearchParams])
+        results.meta?.pagination?.total > 8 && setSearchParams({ page: currentPage });
+    }, [searchParams, currentPage, setSearchParams, results])
 
     return (
         <div className='searchResults container' >

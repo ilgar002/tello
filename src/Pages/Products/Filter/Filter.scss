@@ -41,12 +41,37 @@
                 gap: 16px;
 
                 input {
-                    width: 20px;
-                    height: 20px;
+                    width: 22px;
+                    height: 22px;
                     cursor: pointer;
                     outline: none;
-                    border: 1px solid $clr-default;
                     border-radius: 3px;
+                    border: none;
+                    accent-color: $clr-default;
+                    // background-image: url('data: image/png;base64,../../../images/checked.svg');
+
+                    // &:checked {
+                    //     // background-image: url('../../../images/checked.svg');
+                    //     background-image: url('data: image/png;base64,../../../images/checked.svg');
+
+                    //     &::after {
+                    //         // background-image: url('../../../images/checked.svg');
+                    //         background-image: url('data: image/png;base64,../../../images/checked.svg');
+                    //     }
+                    // }
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 3px;
+                        background: rgba(0, 214, 143, 0.16);
+                        border: 1px solid $clr-default;
+                    }
+
+
                 }
 
                 label {

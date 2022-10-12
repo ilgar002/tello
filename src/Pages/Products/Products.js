@@ -9,49 +9,72 @@ import Order from "./Order/Order";
 import Product from '../../components/Product/Product';
 import Pagination from './Pagination/Pagination'
 import Skeleton from "../../components/Skeleton/Product/Product";
-import { options } from './data';
+import { optionsOrder, optionsFilter } from './data';
 
 
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const { allProducts, loading } = useSelector((state) => state.allProducts)
-    const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1)
-    const [currentOption, setCurrentOption] = useState(Number(searchParams.get('sortBy')) || options[0])
-
-
+    const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')))
+    const [currentOption, setCurrentOption] = useState(Number(searchParams.get('sortBy')) || optionsOrder[0])
     const dispatch = useDispatch()
-    const categorie = useParams().slug
+    const slug = useParams().slug
     window.scrollTo(0, 0)
     useEffect(() => {
+        setCurrentPage(Number(searchParams.get('page')) || 1);
+        const values = []
+        if (searchParams.get('queries')?.length > 0) {
+            optionsFilter.forEach((el) => {
+                if (searchParams.get('queries').includes(el.label)) {
+                    el.checked = true
+                    values.push(...el.value)
+                }
+                else {
+                    el.checked = false
+                }
+            })
+        }
+        else {
+            optionsFilter.forEach((el) => {
+                el.checked = false
+            })
+        }
         dispatch(getAllProducts({
-            category_slug: [categorie],
+            category_slug: [slug],
+            query: values.toString() || null,
             limit: 6,
             page: currentPage,
             sortBy: currentOption.actions.sortBy,
             sortDirection: currentOption.actions.sortDirection,
         }))
-    }, [categorie, dispatch, currentPage, currentOption])
-
-    useEffect(() => {
-        const params = Object.fromEntries([...searchParams])
-        setSearchParams({ ...params, page: currentPage })
-    }, [searchParams, currentPage, setSearchParams])
+    }, [slug, dispatch, currentPage, currentOption, searchParams])
 
 
-    let categorieName = categorie.split('-')
-    for (var i = 0; i < categorieName.length; i++) {
-        categorieName[i] = categorieName[i].charAt(0).toUpperCase() + categorieName[i].slice(1);
+    let directionCategorie = {}
+    const getCategorieName = (arr) => {
+        arr?.filter((el) => {
+            if (el.slug === slug) {
+                directionCategorie = el
+                return true
+            }
+            else {
+                getCategorieName(el.children)
+                return false
+            }
+        })
     }
-    categorieName = categorieName.join(" ")
-
-
+    getCategorieName(JSON.parse(localStorage.getItem('categories')))
 
     return (
         <main className="products">
             <div className='container'>
-                <Direction categorie={{ name: categorieName, slug: `/products/${categorie}` }} />
+                <Direction categorie={{ name: directionCategorie.name, slug: `/products/${slug}` }} />
                 <div className="product-list-wrapper">
-                    <Filter />
+                    <Filter
+                        searchParams={searchParams}
+                        setSearchParams={setSearchParams}
+                        options={optionsFilter}
+                    />
                     <div className="product-list">
                         <div className="row">
                             <span className="product-number">
@@ -60,8 +83,10 @@ const Products = () => {
                             <Order
                                 currentOption={currentOption}
                                 setCurrentOption={setCurrentOption}
-                                options={options}
+                                options={optionsOrder}
                                 setCurrentPage={setCurrentPage}
+                                searchParams={searchParams}
+                                setSearchParams={setSearchParams}
                             />
                         </div>
                         <div className="product-wrapper">
@@ -86,6 +111,8 @@ const Products = () => {
                             data={allProducts?.meta?.pagination}
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
+                            searchParams={searchParams}
+                            setSearchParams={setSearchParams}
                         />)}
                     </div>
                 </div>

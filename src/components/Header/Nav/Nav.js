@@ -7,7 +7,7 @@ import DropdownMenu from './DropdownMenu/Dropdown';
 
 const Nav = () => {
     const { categories, loading } = useSelector((state) => state.categories)
-
+    // console.log(categories);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCategorieNames())
@@ -41,14 +41,14 @@ const Nav = () => {
                 <ul className="nav-links">
                     {editedCategories.slice(0, 5).map((el, index) => {
                         return <li key={el.id} className='link'>
-                            <Link to={`products/${el.slug}`}>
+                            <Link to={{ pathname: `products/${el.slug}` }} state={{ name: "salam" }}>
                                 {el.name}
                             </Link>
                             <DropdownMenu subCategories={editedCategories[index].children} />
                         </li>
                     })}
                 </ul>
-            </nav>
+            </nav >
         )
     }
     else {

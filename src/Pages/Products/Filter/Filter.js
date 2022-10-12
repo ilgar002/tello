@@ -2,12 +2,34 @@ import React, { useState } from 'react';
 import "./Filter.scss";
 import PlusIcon from '../../../images/plus-icon.svg';
 import MinusIcon from '../../../images/minus-icon.svg';
+import { DebounceInput } from 'react-debounce-input';
 
 
-const Filter = () => {
+
+const Filter = ({ searchParams, setSearchParams, options }) => {
     const [filterVisibility, setFilterVisibility] = useState(false)
     const onClickHandler = () => {
         setFilterVisibility((prev) => !prev)
+    }
+
+    const changeHandler = (e) => {
+        return (el) => {
+            e.target.checked ? el.checked = true : el.checked = false
+            const labels = []
+            options.forEach((el2) => {
+                if (el2.checked) {
+                    labels.push(el2.label)
+                }
+            })
+            if (labels.length > 0) {
+                const params = Object.fromEntries([...searchParams])
+                setSearchParams({ ...params, queries: labels.toString() })
+            }
+            else {
+                searchParams.delete('queries');
+                setSearchParams(searchParams);
+            }
+        }
     }
     return (
         <div className="side-filter" >
@@ -25,25 +47,19 @@ const Filter = () => {
             {filterVisibility &&
                 <div className="options-dropdown">
                     <ul className='options'>
-                        <li className='option'>
-                            <input type="checkbox" name="apple" />
-                            <label htmlFor="apple">Apple</label>
-                        </li>
-
-                        <li className='option'>
-                            <input type="checkbox" name="apple" />
-                            <label htmlFor="apple">Apple</label>
-                        </li>
-
-                        <li className='option'>
-                            <input type="checkbox" name="apple" />
-                            <label htmlFor="apple">Apple</label>
-                        </li>
-
-                        <li className='option'>
-                            <input type="checkbox" name="apple" />
-                            <label htmlFor="apple">Apple</label>
-                        </li>
+                        {options.map((el) => {
+                            return <li key={el.id} className='option'>
+                                <DebounceInput
+                                    type="checkbox"
+                                    onChange={(e) => changeHandler(e)(el)}
+                                    name={el.label}
+                                    id={el.label}
+                                    defaultChecked={searchParams.get('queries')?.includes(el.label)}
+                                    debounceTimeout={1000}
+                                />
+                                <label htmlFor={el.label}>{el.label}</label>
+                            </li>
+                        })}
                     </ul>
                 </div>}
 
