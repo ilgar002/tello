@@ -28,7 +28,9 @@ const Header = () => {
             <Logo />
             <Search />
             <div className="user-block">
-                <img className='person' src={PersonIcon} alt="person" />
+                <Link to={"/login"}>
+                    <img className='person' src={PersonIcon} alt="person" />
+                </Link>
                 <img src={HeartIcon} alt="heart" />
                 <Link to={"/cart"} className='basket'>
                     <img src={BasketIcon} alt="basket" />

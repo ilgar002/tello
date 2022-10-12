@@ -1,0 +1,11 @@
+@import "../../../Scss/variables.scss";
+
+.login {
+    padding: 90px 0 150px 0;
+    .container {
+        .login-content {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}

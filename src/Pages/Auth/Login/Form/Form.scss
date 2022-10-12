@@ -1,0 +1,49 @@
+@import "../../../../Scss/variables.scss";
+
+.login-wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+        font-weight: 500;
+        font-size: 1.25rem;
+        color: $clr-gray-2;
+    }
+
+    .or {
+        font-weight: 500;
+        font-size: .9rem;
+        color: $clr-gray-4;
+        margin-top: 32px;
+    }
+
+    .login-form {
+        max-width: 310px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .login-btn {
+            background-color: $clr-default;
+            padding: 16px 32px;
+            font-weight: 500;
+            font-size: .9rem;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 48px;
+        }
+
+        .forgot-password {
+            margin-top: 8px;
+            color: $clr-blue-link;
+            font-weight: 500;
+            font-size: .9rem;
+            text-align: end;
+        }
+    }
+}

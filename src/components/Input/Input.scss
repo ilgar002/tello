@@ -1,0 +1,32 @@
+@import "../../Scss/variables.scss";
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 310px;
+    width: 100%;
+    margin-top: 24px;
+    label {
+        font-weight: 400;
+        font-size: .9rem;
+        color: $clr-gray-2;
+    }
+
+    input {
+        background-color: $clr-gray-6;
+        padding: 14px 16px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        font-weight: 400;
+        font-size: 1rem;
+        color: $clr-gray-2;
+
+        &::placeholder {
+            font-weight: 400;
+            font-size: 14px;
+            color: $clr-gray-3;
+        }
+    }
+}

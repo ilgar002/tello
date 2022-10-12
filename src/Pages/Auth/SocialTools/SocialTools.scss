@@ -1,0 +1,45 @@
+@import "../../../Scss/variables.scss";
+.social-tools {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    .tool {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+
+        span {
+            font-weight: 400;
+            font-size: .9rem;
+            color: $clr-gray-2;
+        }
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                fill: #fff;
+            }
+        }
+
+        &.facebook {
+            .icon {
+                background: #4267B2;
+            }
+        }
+
+        &.google {
+            .icon {
+                background: #DB4437;
+            }
+        }
+    }
+}
