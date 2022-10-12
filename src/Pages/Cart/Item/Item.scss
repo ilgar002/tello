@@ -4,13 +4,14 @@
     display: flex;
     background-color: #fff;
     padding: 16px;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 32px;
     border-radius: 8px;
 
     .product-image {
         width: 50px;
         height: 72px;
+        cursor: pointer;
 
         img {
             width: 100%;
@@ -29,6 +30,7 @@
             font-weight: 500;
             font-size: 1rem;
             color: $clr-gray-1;
+            cursor: pointer;
         }
 
         .details {

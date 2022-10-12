@@ -9,35 +9,14 @@ import Order from "./Order/Order";
 import Product from '../../components/Product/Product';
 import Pagination from './Pagination/Pagination'
 import Skeleton from "../../components/Skeleton/Product/Product";
+import { options } from './data';
+
 
 const Products = () => {
-    const options = [
-        {
-            label: 'Ən yenilər',
-            actions: {
-                sortBy: "created",
-                sortDirection: 'desc',
-            }
-        },
-        {
-            label: 'Ada görə',
-            actions: {
-                sortBy: "name",
-                sortDirection: 'desc',
-            }
-        },
-        {
-            label: 'Qiymətə görə',
-            actions: {
-                sortBy: "price",
-                sortDirection: 'desc',
-            }
-        }
-    ]
     const [searchParams, setSearchParams] = useSearchParams();
     const { allProducts, loading } = useSelector((state) => state.allProducts)
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1)
-    const [currentOption, setCurrentOption] = useState(options[0])
+    const [currentOption, setCurrentOption] = useState(Number(searchParams.get('sortBy')) || options[0])
 
 
     const dispatch = useDispatch()
@@ -54,11 +33,11 @@ const Products = () => {
     }, [categorie, dispatch, currentPage, currentOption])
 
     useEffect(() => {
-        setSearchParams({ page: currentPage });
+        const params = Object.fromEntries([...searchParams])
+        setSearchParams({ ...params, page: currentPage })
     }, [searchParams, currentPage, setSearchParams])
 
 
-    // console.log(currentPage);
     let categorieName = categorie.split('-')
     for (var i = 0; i < categorieName.length; i++) {
         categorieName[i] = categorieName[i].charAt(0).toUpperCase() + categorieName[i].slice(1);
@@ -82,6 +61,7 @@ const Products = () => {
                                 currentOption={currentOption}
                                 setCurrentOption={setCurrentOption}
                                 options={options}
+                                setCurrentPage={setCurrentPage}
                             />
                         </div>
                         <div className="product-wrapper">

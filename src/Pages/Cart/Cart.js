@@ -29,14 +29,15 @@ const Cart = () => {
                 <div className="s-container">
                     <div className="items">
                         {cart?.line_items?.map((el) => {
-                            console.log(el.variant);
                             return <Item
                                 key={el.id}
                                 item_id={el.id}
+                                product_id={el.product_id}
                                 name={el.variant?.description || el.product_name}
                                 price={el.price.raw}
                                 image={el.image.url}
                                 quantity={el.quantity}
+                                options={el?.selected_options}
                             />
                         })}
                     </div>
