@@ -46,7 +46,7 @@ const Products = () => {
     useEffect(() => {
         dispatch(getAllProducts({
             category_slug: [categorie],
-            limit: 3,
+            limit: 6,
             page: currentPage,
             sortBy: currentOption.actions.sortBy,
             sortDirection: currentOption.actions.sortDirection,
@@ -102,11 +102,11 @@ const Products = () => {
                                 />
                             })}
                         </div>
-                        {loading || <Pagination
+                        {loading || (allProducts.meta?.pagination?.total > 6 && <Pagination
                             data={allProducts?.meta?.pagination}
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
-                        />}
+                        />)}
                     </div>
                 </div>
 

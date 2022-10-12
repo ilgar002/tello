@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { commerce } from '../../../commerce';
+import { useNavigate } from 'react-router-dom';
 import './Search.scss';
 import SearchIcon from "../../../images/search-icon.svg";
 import Result from './Result/Result';
@@ -15,7 +16,7 @@ const Search = () => {
     const [loading, setLoading] = useState(false)
     const [searchs, setSearchs] = useState(recentSearchs ? JSON.parse(recentSearchs) : [])
     const formRef = useRef()
-
+    const navigate = useNavigate()
     useEffect(() => {
         if (inputValue.length > 0) {
             getResults(inputValue)
@@ -69,6 +70,7 @@ const Search = () => {
         inputValue.trim('').length > 0 && setSearchs([...searchs, inputValue])
         setInputValue('')
         setTypingDropdown(false)
+        navigate(`/search-results/${inputValue}`)
     }
 
     return (

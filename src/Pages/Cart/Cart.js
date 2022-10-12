@@ -37,9 +37,7 @@ const Cart = () => {
                                 price={el.price.raw}
                                 image={el.image.url}
                                 quantity={el.quantity}
-                            // color={"red"}
                             />
-
                         })}
                     </div>
                     <Summary cart={cart} />
