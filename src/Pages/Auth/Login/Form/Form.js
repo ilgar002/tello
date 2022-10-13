@@ -2,9 +2,12 @@ import React from 'react';
 import "./Form.scss";
 import Input from '../../../../components/Input/Input';
 import useForm from '../../../../hooks/useForm';
+import { useDispatch } from "react-redux"
+import { loginUser } from '../../../../store/actions/user';
 import { validateEmail } from '../helper';
 import SocialTools from '../../SocialTools/SocialTools';
 const Form = () => {
+  const dispatch = useDispatch()
 
   const { value: email,
     isValid: emailIsValid,
@@ -15,6 +18,9 @@ const Form = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
+    if (emailIsValid) {
+      dispatch(loginUser({ email }))
+    }
   }
 
   console.log(emailIsValid);

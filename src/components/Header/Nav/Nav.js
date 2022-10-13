@@ -39,7 +39,7 @@ const Nav = () => {
         return (
             <nav>
                 <ul className="nav-links">
-                    {editedCategories.slice(0, 5).map((el, index) => {
+                    {editedCategories?.slice(0, 5).map((el, index) => {
                         return <li key={el.id} className='link'>
                             <Link to={{ pathname: `products/${el.slug}` }} state={{ name: "salam" }}>
                                 {el.name}

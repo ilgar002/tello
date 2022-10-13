@@ -6,7 +6,7 @@ import LoginImage from '../../../images/login.png'
 const ImageWrapper = ({ question, message, link }) => {
     return (
         <div className="img-wrapper">
-            <img src={LoginImage} alt="Image" />
+            <img src={LoginImage} alt="auth" />
             <div className="navigation">
                 {question}
                 <Link to={link}>
