@@ -62,7 +62,7 @@ const Header = () => {
                 {/* <img src={HeartIcon} alt="heart" /> */}
                 <Link to={"/cart"} className='basket'>
                     <img src={BasketIcon} alt="basket" />
-                    {loading ? <img src={InfinityLoading} alt="loading..." /> :
+                    {loading ? <img src={InfinityLoading} className='loading-basket' alt="loading..." /> :
                         <div className="basket-count">{cart.total_items}</div>
                     }
                 </Link>

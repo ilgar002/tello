@@ -21,6 +21,7 @@ header {
         display: flex;
         gap: 28px;
         align-items: center;
+
         .basket {
             display: flex;
             align-items: center;
@@ -49,11 +50,13 @@ header {
                 width: 18px;
             }
         }
-        .user{
+
+        .user {
             display: flex;
             align-items: center;
             gap: 5px;
-            .user-firstname{
+
+            .user-firstname {
                 color: $clr-gray-2;
                 font-size: 1.2rem;
                 font-weight: 500;
@@ -79,12 +82,20 @@ header {
         .user-block {
             gap: 15px;
             flex: 1;
-                justify-content: end;
+            justify-content: end;
 
             .basket {
                 position: relative;
 
                 .basket-count {
+                    width: 21px;
+                    height: 21px;
+                    position: absolute;
+                    right: -10px;
+                    top: -10px;
+                }
+
+                .loading-basket {
                     width: 21px;
                     height: 21px;
                     position: absolute;

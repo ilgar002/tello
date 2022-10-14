@@ -128,3 +128,34 @@
         margin-top: 32px;
     }
 }
+
+@media(max-width:576px) {
+    .features {
+        text-align: center;
+
+        .colors,
+        .storage {
+            flex-direction: column;
+            padding: 12px 0;
+            gap: 12px;
+        }
+
+        .quantity {
+            padding: 12px 0;
+            row-gap: 12px;
+            column-gap: 32px;
+
+            .title {
+                width: 100%;
+            }
+
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .addBasket {
+            margin: 24px auto;
+        }
+    }
+
+}

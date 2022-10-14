@@ -15,6 +15,7 @@ main.products {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+
                 .product-number {
                     font-weight: 500;
                     font-size: 1rem;
@@ -34,6 +35,34 @@ main.products {
     }
 }
 
-@media(max-width:576px){
-    
+@media(max-width:576px) {
+    main.products {
+        .product-list-wrapper {
+            .side-filter {
+                display: none;
+            }
+
+            .product-list {
+                width: 100%;
+
+                .row {
+                    justify-content: center;
+                }
+
+                .product-wrapper {
+                    justify-content: space-between;
+                    padding-top: 24px;
+
+                    .product-card {
+                        width: 170px;
+                    }
+                }
+
+                .orderBy {
+                    display: none;
+                }
+            }
+        }
+    }
+
 }

@@ -17,11 +17,11 @@ const Details = () => {
         color: { variant_group: Object.keys({} || variants?.[0].options)[1], option: Object.values({} || variants?.[0].options)[1] },
         storage: { variant_group: Object.keys({} || variants?.[0].options)[0], option: Object.values({} || variants?.[0].options)[0] }
     })
-    window.scrollTo(0, 0)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getProduct(id))
         getVariants(id);
+        window.scrollTo(0, 0)
     }, [dispatch, id])
 
     const colors = product?.variant_groups?.filter((el) => {
