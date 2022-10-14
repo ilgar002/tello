@@ -31,7 +31,7 @@ const MobileNavbar = ({ setMobileNavbar, mobileNavbar, categories, loading, edit
             <div className='navbar-content'>
                 <ul>
                     {
-                        loading ? editedCategories.slice(0, 5).map((el, index) => {
+                        loading ? editedCategories?.slice(0, 5).map((el, index) => {
                             return <li key={el.id}>
                                 <Link onClick={closeNavbar} to={`products/${el.slug}`}>
                                     {el.name}
@@ -59,7 +59,7 @@ const MobileNavbar = ({ setMobileNavbar, mobileNavbar, categories, loading, edit
                                     <BsChevronRight onClick={() => openDropdown(index)} className={currentDropdown === index ? "openDropdown opened" : "openDropdown"} />
                                     {currentDropdown === index && <div className="dropdown">
                                         <ul>
-                                            {categories[index].children.map((el) => {
+                                            {categories[index]?.children.map((el) => {
                                                 return <li key={el.id}>
                                                     <Link onClick={closeNavbar} to={`products/${el.slug}`}>
                                                         {el.name}
@@ -71,7 +71,6 @@ const MobileNavbar = ({ setMobileNavbar, mobileNavbar, categories, loading, edit
                                 </li>
                             })
                     }
-
                 </ul>
             </div>
         </div>

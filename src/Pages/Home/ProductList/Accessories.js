@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ProductList.scss";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAccessories } from '../../../store/actions/products';
 
 import Skeleton from "../../../components/Skeleton/Product/Product";
@@ -9,10 +9,11 @@ import Product from '../../../components/Product/Product';
 import RightArrow from '../../../images/right-arrow.svg';
 
 const Accessories = () => {
-    const { products, loading } = useSelector((state) => state.accessories)
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getAccessories())
+        getAccessories(setLoading, setProducts)
     }, [dispatch])
     return (
         <div className="new-accessories products-section">

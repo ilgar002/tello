@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getProduct } from '../../store/actions/products'
 import "./Details.scss";
@@ -11,18 +11,21 @@ import { commerce } from '../../commerce';
 
 const Details = () => {
     const id = useParams().id
-    const { product, loading } = useSelector((state) => state.product)
+
     const [variants, setVariants] = useState()
     const [currentVariant, setCurrentVariant] = useState({
         color: { variant_group: Object.keys({} || variants?.[0].options)[1], option: Object.values({} || variants?.[0].options)[1] },
         storage: { variant_group: Object.keys({} || variants?.[0].options)[0], option: Object.values({} || variants?.[0].options)[0] }
     })
+    const [product, setProduct] = useState([])
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getProduct(id))
-        getVariants(id);
+        getProduct(setLoading, setProduct,id)
         window.scrollTo(0, 0)
-    }, [dispatch, id])
+        getVariants(id);
+    }, [dispatch,id])
+
 
     const colors = product?.variant_groups?.filter((el) => {
         return el.name === 'color'

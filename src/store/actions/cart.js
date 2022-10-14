@@ -13,17 +13,7 @@ export const getCart = createAsyncThunk('name/getCart',
         }
     })
 
-// export const getCartContents = createAsyncThunk('name/getCartContents',
-//     async () => {
-//         try {
-//             const response = await commerce.cart.contents()
-//             console.log(response);
-//             return response;
-//         }
-//         catch (err) {
-//             return err.message
-//         }
-//     })
+
 
 export const addToCart = createAsyncThunk('name/addToCart',
     async (params) => {

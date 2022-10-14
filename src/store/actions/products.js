@@ -12,11 +12,12 @@ export const getAllProducts = createAsyncThunk('name/getAllProducts',
         }
     })
 
-export const getBestSellers = createAsyncThunk('name/getBestSellers',
-    async () => {
+export const getBestSellers =
+    async (setLoading, setProducts) => {
         try {
+            setLoading(true)
             const response = await commerce.products.list({
-                limit: 50,
+                limit: 100,
             });
             let currentIndex = response.data.length, randomIndex;
             while (currentIndex !== 0) {
@@ -25,53 +26,63 @@ export const getBestSellers = createAsyncThunk('name/getBestSellers',
                 [response.data[currentIndex], response.data[randomIndex]] = [
                     response.data[randomIndex], response.data[currentIndex]];
             }
+            setProducts(response.data)
+            setLoading(false)
             return response.data;
         }
         catch (err) {
             return err.message
         }
-    })
+    }
 
-export const getNews = createAsyncThunk('name/getNews',
-    async () => {
+export const getNews =
+    async (setLoading, setProducts) => {
         try {
+            setLoading(true)
             const response = await commerce.products.list({
                 sortBy: "created",
                 sortDirection: 'desc',
                 limit: 50,
             });
+            setProducts(response.data)
+            setLoading(false)
             return response.data;
         }
         catch (err) {
             return err.message
         }
-    })
+    }
 
-export const getAccessories = createAsyncThunk('name/getAccessories',
-    async () => {
+export const getAccessories =
+    async (setLoading, setProducts) => {
         try {
+            setLoading(true)
             const response = await commerce.products.list({
                 category_slug: ['aksesuarlar'],
                 limit: 50,
             });
+            setProducts(response.data)
+            setLoading(false)
             return response.data;
         }
         catch (err) {
             return err.message
         }
-    })
+    }
 
-export const getProduct = createAsyncThunk('name/getProduct',
-    async (id) => {
+export const getProduct =
+    async (setLoading, setProduct, id) => {
         try {
-            const response = await commerce.products.retrieve(id);;
-            // console.log(response);
+            setLoading(true)
+            const response = await commerce.products.retrieve(id);
+            setProduct(response)
+            setLoading(false)
             return response;
         }
         catch (err) {
             return err.message
         }
-    })
+    }
 
 export const getVariants = async (id) => {
     try {
@@ -82,5 +93,9 @@ export const getVariants = async (id) => {
         return err.message
     }
 }
+
+
+
+
 
 
