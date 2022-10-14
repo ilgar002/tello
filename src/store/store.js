@@ -6,6 +6,7 @@ import getAccessoriesReducer from './reducers/getAccessoriesReducer';
 import getCategorieNamesReducer from './reducers/getCategorieNamesReducer';
 import getProductReducer from './reducers/getProductReducer';
 import getCartReducer from './reducers/getCartReducer';
+import userReducer from './reducers/userReducer';
 
 
 
@@ -18,5 +19,6 @@ export const store = configureStore({
         categories: getCategorieNamesReducer,
         product: getProductReducer,
         cart: getCartReducer,
+        user: userReducer,
     },
 })

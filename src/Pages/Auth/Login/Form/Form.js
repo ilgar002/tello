@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux"
 import { loginUser } from '../../../../store/actions/user';
 import { validateEmail } from '../helper';
 import SocialTools from '../../SocialTools/SocialTools';
-const Form = () => {
+
+const Form = ({ setMessage }) => {
   const dispatch = useDispatch()
 
   const { value: email,
@@ -20,10 +21,9 @@ const Form = () => {
     e.preventDefault()
     if (emailIsValid) {
       dispatch(loginUser({ email }))
+      setMessage(true)
     }
   }
-
-  console.log(emailIsValid);
 
   return (
     <div className='login-wrapper'>

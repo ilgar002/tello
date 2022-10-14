@@ -9,8 +9,8 @@ import Partners from "./Sliders/Partners/Partners";
 import Advantages from './Advantages/Advantages';
 import Banner from './Banner/Banner';
 
-
 const Main = () => {
+    
     return (
         <main className='home'>
             <EntranceSlider />

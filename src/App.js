@@ -10,6 +10,7 @@ import SearchResults from './Pages/SearchResults/SearchResults';
 import Questions from './Pages/Questions/Questions';
 import Login from './Pages/Auth/Login/Login';
 import Register from './Pages/Auth/Register/Register';
+import CreateToken from './Pages/Auth/CreateToken/CreateToken';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/questions' element={<Questions />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/create-token/:token' element={<CreateToken />} />
       </Routes>
       <Footer />
     </>

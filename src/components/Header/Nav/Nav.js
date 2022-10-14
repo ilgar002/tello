@@ -1,39 +1,11 @@
-import React, { useEffect } from 'react';
+import React  from 'react';
 import "./Nav.scss";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { getCategorieNames } from '../../../store/actions/categories';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { getCategorieNames } from '../../../store/actions/categories';
 import DropdownMenu from './DropdownMenu/Dropdown';
 
-const Nav = () => {
-    const { categories, loading } = useSelector((state) => state.categories)
-    // console.log(categories);
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getCategorieNames())
-    }, [dispatch])
-
-    let editedCategories;
-    if (categories.length > 0 && !loading) {
-        editedCategories = categories.map((el) => {
-            return {
-                id: el.id,
-                name: el.name,
-                slug: el.slug,
-                children: el.children.map((el) => {
-                    return {
-                        id: el.id,
-                        name: el.name,
-                        slug: el.slug,
-                    }
-                })
-            }
-        })
-        localStorage.setItem("categories", JSON.stringify(editedCategories))
-    }
-    else if (JSON.parse(localStorage.getItem("categories"))?.length > 0) {
-        editedCategories = JSON.parse(localStorage.getItem("categories"))
-    }
+const Nav = ({ categories, loading, editedCategories }) => {
 
     if (loading) {
         return (

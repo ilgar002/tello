@@ -1,0 +1,19 @@
+@import "../../../Scss/variables.scss";
+
+.mail-message {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .message-text {
+        padding-top: 48px;
+        max-width: 370px;
+        font-weight: 500;
+        font-size: 1.70rem;
+        line-height: 32px;
+        text-align: center;
+        color: $clr-gray-2;
+        
+    }
+}

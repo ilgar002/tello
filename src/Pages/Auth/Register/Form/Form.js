@@ -45,11 +45,10 @@ const Form = () => {
         e.preventDefault()
         if (firstnameIsValid && lastnameIsValid && emailIsValid && phoneIsValid) {
             dispatch(registerUser({ firstname, lastname, email, phone, }))
-            navigate('/login')
-            // console.log('success');
+            navigate('/login', { replace: true })
         }
         else {
-            // console.log('error');
+            console.log('error');
         }
     }
     return (

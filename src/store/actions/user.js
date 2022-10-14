@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { commerce } from '../../commerce';
 
 export const registerUser = createAsyncThunk(
     'user/registerUser',
@@ -23,7 +24,6 @@ export const registerUser = createAsyncThunk(
             }
 
             const response = await axios.post(url, body, { headers: headers });
-            console.log(response.data)
             return response.data;
         }
         catch (err) {
@@ -31,7 +31,6 @@ export const registerUser = createAsyncThunk(
         }
     }
 )
-
 
 export const loginUser = createAsyncThunk(
     'user/loginUser',
@@ -50,12 +49,24 @@ export const loginUser = createAsyncThunk(
 
             let body = {
                 "email": email,
-                "base_url": "http://localhost:3000/generate-token"
+                "base_url": "http://localhost:3000/create-token"
             }
 
             const response = await axios.post(url, body, { headers: headers });
-            console.log(response.data)
             return response.data;
+        }
+        catch (err) {
+            return err.message
+        }
+    }
+)
+
+export const getUser = createAsyncThunk(
+    'user/getUser',
+    async () => {
+        try {
+            const response = await commerce.customer.about();
+            return response;
         }
         catch (err) {
             return err.message
