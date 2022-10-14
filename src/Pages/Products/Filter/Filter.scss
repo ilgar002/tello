@@ -48,17 +48,7 @@
                     border-radius: 3px;
                     border: none;
                     accent-color: $clr-default;
-                    // background-image: url('data: image/png;base64,../../../images/checked.svg');
 
-                    // &:checked {
-                    //     // background-image: url('../../../images/checked.svg');
-                    //     background-image: url('data: image/png;base64,../../../images/checked.svg');
-
-                    //     &::after {
-                    //         // background-image: url('../../../images/checked.svg');
-                    //         background-image: url('data: image/png;base64,../../../images/checked.svg');
-                    //     }
-                    // }
 
                     &:before {
                         content: "";
@@ -70,7 +60,6 @@
                         background: rgba(0, 214, 143, 0.16);
                         border: 1px solid $clr-default;
                     }
-
 
                 }
 

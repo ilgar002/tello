@@ -10,6 +10,9 @@ import Product from '../../components/Product/Product';
 import Pagination from './Pagination/Pagination'
 import Skeleton from "../../components/Skeleton/Product/Product";
 import { optionsOrder, optionsFilter } from './data';
+import MobileOptions from './MobileOptions/MobileOptions';
+
+
 
 
 const Products = () => {
@@ -17,6 +20,7 @@ const Products = () => {
     const { allProducts, loading } = useSelector((state) => state.allProducts)
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')))
     const [currentOption, setCurrentOption] = useState(Number(searchParams.get('sortBy')) || optionsOrder[0])
+    const [filterVisibility, setFilterVisibility] = useState(false)
     const dispatch = useDispatch()
     const slug = useParams().slug
     window.scrollTo(0, 0)
@@ -49,7 +53,9 @@ const Products = () => {
         }))
     }, [slug, dispatch, currentPage, currentOption, searchParams])
 
-
+    useEffect(() => {
+        setFilterVisibility(false)
+    }, [slug])
     let directionCategorie = {}
     const getCategorieName = (arr) => {
         arr?.filter((el) => {
@@ -67,13 +73,27 @@ const Products = () => {
 
     return (
         <main className="products">
+            <MobileOptions
+                currentOption={currentOption}
+                setCurrentOption={setCurrentOption}
+                optionsOrder={optionsOrder}
+                setCurrentPage={setCurrentPage}
+                searchParams={searchParams}
+                setSearchParams={setSearchParams}
+                optionsFilter={optionsFilter}
+                filterVisibility={filterVisibility}
+                setFilterVisibility={setFilterVisibility}
+            />
             <div className='container'>
                 <Direction categorie={{ name: directionCategorie.name, slug: `/products/${slug}` }} />
                 <div className="product-list-wrapper">
+
                     <Filter
                         searchParams={searchParams}
                         setSearchParams={setSearchParams}
                         options={optionsFilter}
+                        filterVisibility={filterVisibility}
+                        setFilterVisibility={setFilterVisibility}
                     />
                     <div className="product-list">
                         <div className="row">

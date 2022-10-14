@@ -1,0 +1,123 @@
+@import "../../../Scss/variables.scss";
+
+.mobile-options {
+    display: none;
+}
+
+@media(max-width:576px) {
+    .mobile-options {
+        display: flex;
+        align-items: center;
+        height: 70px;
+        border-bottom: 1px solid $clr-basic-300;
+
+        .filters,
+        .orders {
+            flex: 1;
+
+            .title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                height: fit-content;
+                font-weight: 500;
+                font-size: 1rem;
+                color: #303030;
+            }
+
+            .actions {
+                padding-top: 26px;
+                display: flex;
+                justify-content: center;
+
+                .orderBy {
+                    width: 60%;
+                }
+
+                .side-filter {
+                    width: 65%;
+                }
+            }
+        }
+
+        .orders {
+
+            .orders-content {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: #fff;
+                z-index: 1001;
+                transition: all .3s ease;
+
+                .row {
+                    padding: 20px 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 22px;
+                    border-bottom: 1px solid rgba($color: #303030, $alpha: 0.16);
+
+                    img {
+                        width: 16px;
+                    }
+
+                    span {
+                        font-weight: 500;
+                        font-size: 1.25rem;
+                        color: $clr-gray-1;
+                    }
+                }
+            }
+
+            &.opened {
+                .orders-content {
+                    left: 0;
+                }
+            }
+
+        }
+
+        .filters {
+            border-left: 1px solid $clr-basic-300;
+
+            .filters-content {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: #fff;
+                z-index: 1001;
+                transition: all .3s ease;
+
+                .row {
+                    padding: 20px 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 22px;
+                    border-bottom: 1px solid rgba($color: #303030, $alpha: 0.16);
+
+                    img {
+                        width: 16px;
+                    }
+
+                    span {
+                        font-weight: 500;
+                        font-size: 1.25rem;
+                        color: $clr-gray-1;
+                    }
+                }
+            }
+
+            &.opened {
+                .filters-content {
+                    right: 0;
+                }
+            }
+        }
+    }
+}

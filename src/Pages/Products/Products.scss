@@ -4,6 +4,7 @@ main.products {
     padding-top: 26px;
     padding-bottom: 144px;
 
+
     .product-list-wrapper {
         display: flex;
         justify-content: space-between;
@@ -37,7 +38,12 @@ main.products {
 
 @media(max-width:576px) {
     main.products {
+        padding-top: 0;
+        padding-bottom: 100px;
+
         .product-list-wrapper {
+            display: block;
+
             .side-filter {
                 display: none;
             }
@@ -47,6 +53,7 @@ main.products {
 
                 .row {
                     justify-content: center;
+                    padding-top: 32px;
                 }
 
                 .product-wrapper {

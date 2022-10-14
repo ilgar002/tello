@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./Filter.scss";
 import PlusIcon from '../../../images/plus-icon.svg';
 import MinusIcon from '../../../images/minus-icon.svg';
@@ -6,8 +6,8 @@ import { DebounceInput } from 'react-debounce-input';
 
 
 
-const Filter = ({ searchParams, setSearchParams, options }) => {
-    const [filterVisibility, setFilterVisibility] = useState(false)
+const Filter = ({ searchParams, setSearchParams, options, filterVisibility, setFilterVisibility }) => {
+
     const onClickHandler = () => {
         setFilterVisibility((prev) => !prev)
     }
@@ -55,7 +55,7 @@ const Filter = ({ searchParams, setSearchParams, options }) => {
                                     name={el.label}
                                     id={el.label}
                                     defaultChecked={searchParams.get('queries')?.includes(el.label)}
-                                    debounceTimeout={1000}
+                                    debounceTimeout={500}
                                 />
                                 <label htmlFor={el.label}>{el.label}</label>
                             </li>
