@@ -26,8 +26,48 @@ main.cart {
         }
 
     }
-    .loading-spinner{
+
+    .loading-spinner {
         height: 450px;
     }
+}
 
+@media(max-width:576px) {
+    main.cart {
+        padding: 30px 0 110px 0;
+
+        .container {
+            width: 90%;
+
+            .s-container {
+                flex-direction: column;
+                gap: 24px;
+                margin-top: 16px;
+
+                .items {
+                    width: 100%;
+                }
+
+                .cart-summary {
+                    order: -1;
+                    width: 100%;
+                    padding: 24px 16px;
+                    gap: 12px;
+
+                    .title {
+                        font-size: 1.2rem;
+                    }
+
+                    ul {
+                        gap: 12px;
+
+                        li {
+                            font-size: .9rem;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
 }

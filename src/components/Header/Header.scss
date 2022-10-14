@@ -19,7 +19,7 @@ header {
 
     .user-block {
         display: flex;
-    gap: 16px;
+        gap: 16px;
         align-items: center;
 
         .basket {
@@ -68,7 +68,7 @@ header {
 @media(max-width:576px) {
     header {
         padding: 8px 16px 16px 16px;
-        gap: 4px;
+        gap: 8px;
 
         .logo {
             flex: 1;

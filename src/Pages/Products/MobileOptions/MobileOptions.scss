@@ -32,12 +32,27 @@
                 justify-content: center;
 
                 .orderBy {
-                    width: 60%;
+                    width: 65%;
                 }
 
                 .side-filter {
                     width: 65%;
                 }
+            }
+
+            .showResults {
+                border: none;
+                background-color: #2DD06E;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                border-radius: 8px;
+                padding: 16px 16px;
+                cursor: pointer;
+                width: 65%;
+                margin: 32px auto;
+                white-space: nowrap;
             }
         }
 

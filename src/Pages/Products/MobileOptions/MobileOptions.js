@@ -42,7 +42,9 @@ const MobileOptions = ({ currentOption, setCurrentOption, optionsOrder, searchPa
               setSearchParams={setSearchParams}
             />
           </div>
-
+          <button onClick={ordersToggle} className="showResults">
+            Sıralanmış məhsulları göstər
+          </button>
         </div>
       </div>
       <div className={filters ? 'filters opened' : 'filters'}>
@@ -64,6 +66,9 @@ const MobileOptions = ({ currentOption, setCurrentOption, optionsOrder, searchPa
               setFilterVisibility={setFilterVisibility}
             />
           </div>
+          <button onClick={filtersToggle} className="showResults">
+            Filterlənmiş məhsulları göstər
+          </button>
         </div>
       </div>
     </div>

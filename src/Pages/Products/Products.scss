@@ -57,8 +57,9 @@ main.products {
                 }
 
                 .product-wrapper {
-                    justify-content: space-between;
+                    justify-content: space-around;
                     padding-top: 24px;
+                    column-gap: 0;
 
                     .product-card {
                         width: 170px;
