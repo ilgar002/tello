@@ -66,7 +66,7 @@ const Header = () => {
                         <div className="basket-count">{cart.total_items}</div>
                     }
                 </Link>
-                {(!userLoading && user.firstname) ? <Link to={"/login"} className='user'>
+                {(!userLoading && user.firstname) ? <Link to={"/user-profile/user-info"} className='user'>
                     {(!userLoading && user) && <h6 className='user-firstname'>{user.firstname}</h6>}
                 </Link> :
                     <Link to={"/login"} className='user'>

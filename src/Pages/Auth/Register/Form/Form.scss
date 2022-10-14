@@ -47,3 +47,19 @@
         }
     }
 }
+
+@media(max-width:576px) {
+    .register-wrapper {
+        width: 100%;
+
+        .or {
+            margin-top: 16px;
+        }
+
+        .register-form {
+            .register-btn {
+                margin-top: 30px;
+            }
+        }
+    }
+}

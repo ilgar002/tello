@@ -47,3 +47,19 @@
         }
     }
 }
+
+@media(max-width:576px) {
+    .login-wrapper {
+        width: 100%;
+
+        .or {
+            margin-top: 16px;
+        }
+
+        .login-form {
+            .login-btn {
+                margin-top: 30px;
+            }
+        }
+    }
+}

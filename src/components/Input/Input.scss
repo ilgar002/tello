@@ -7,6 +7,7 @@
     max-width: 310px;
     width: 100%;
     margin-top: 24px;
+
     label {
         font-weight: 400;
         font-size: .9rem;
@@ -28,5 +29,11 @@
             font-size: 14px;
             color: $clr-gray-3;
         }
+    }
+}
+
+@media(max-width:576px) {
+    .input {
+        margin-top: 12px;
     }
 }

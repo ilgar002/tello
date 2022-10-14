@@ -1,0 +1,71 @@
+@import "../../../../Scss/variables.scss";
+
+.user-info {
+    min-width: 65%;
+    height: fit-content;
+
+    .title {
+        font-weight: 500;
+        font-size: 1.3rem;
+        color: $clr-gray-2;
+        margin-bottom: 16px;
+    }
+
+    .content {
+        background-color: #fff;
+        padding: 32px;
+        border-radius: 8px;
+        min-width: 50%;
+
+        .info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 32px;
+
+            .data {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 45%;
+
+                label {
+                    font-weight: 400;
+                    font-size: 1rem;
+                    color: $clr-gray-2;
+                }
+
+                .input {
+                    padding: 14px 16px;
+                    background-color: $clr-gray-6;
+                    border-radius: 8px;
+                    font-weight: 400;
+                    font-size: .95rem;
+                    color: $clr-gray-1;
+                    border: none;
+                    outline-color: $clr-default;
+                }
+
+                &.input {
+                    max-width: 100%;
+                    margin-top: 0;
+                }
+            }
+
+        }
+
+        .update-info {
+            margin: 32px auto 0 auto;
+            font-size: 1rem;
+            border: none;
+            background-color: $clr-default;
+            color: #fff;
+            border-radius: 8px;
+            padding: 16px 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+}

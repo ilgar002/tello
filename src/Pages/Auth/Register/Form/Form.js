@@ -5,7 +5,7 @@ import SocialTools from '../../SocialTools/SocialTools';
 import Input from '../../../../components/Input/Input';
 import useForm from "../../../../hooks/useForm";
 import { useDispatch } from "react-redux"
-import { validateFirstname, validateEmail, validateLastname, validatePhone } from './helper'
+import { validateFirstname, validateEmail, validateLastname, validatePhone } from '../../validateInput'
 import { registerUser } from '../../../../store/actions/user';
 const Form = () => {
 

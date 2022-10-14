@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getUser } from '../actions/user';
+import { getUser, updateUser } from '../actions/user';
 
 const initialState = {
     user: {},
@@ -23,6 +23,19 @@ export const userSlice = createSlice({
             console.log(payload);
             state.user = payload;
         }
+        ,
+        [updateUser.pending]: (state) => {
+            state.loading = true;
+        },
+        [updateUser.rejected]: (state, { payload }) => {
+            state.loading = false;
+            state.error = payload;
+        },
+        [updateUser.fulfilled]: (state, { payload }) => {
+            state.user = payload;
+            state.loading = false;
+            console.log(payload);
+        },
     }
 })
 

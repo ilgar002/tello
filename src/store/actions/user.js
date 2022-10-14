@@ -73,3 +73,22 @@ export const getUser = createAsyncThunk(
         }
     }
 )
+
+export const updateUser = createAsyncThunk(
+    'user/updateUser',
+    async ({ firstname, lastname, email, phone, id }) => {
+        try {
+            const response = await commerce.customer.update({
+                email,
+                firstname,
+                lastname,
+                phone
+            }, id)
+            console.log('salam');
+            return response;
+        }
+        catch (err) {
+            return err.message
+        }
+    }
+)

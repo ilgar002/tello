@@ -1,0 +1,16 @@
+.userProfile {
+    background-color: #f5f5f5;
+    padding-top: 40px;
+    min-height: 80vh;
+
+    .container {
+        .s-container {
+            display: flex;
+            gap: 32px;
+
+            .loading-spinner {
+                height: 350px;
+            }
+        }
+    }
+}

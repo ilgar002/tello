@@ -2,10 +2,24 @@
 
 .login {
     padding: 90px 0 150px 0;
+
     .container {
         .login-content {
             display: flex;
             justify-content: space-around;
+        }
+    }
+}
+
+@media(max-width:576px) {
+    .login {
+        padding: 40px 0 100px 0;
+
+        .container {
+            .login-content {
+                gap: 20px;
+                flex-direction: column;
+            }
         }
     }
 }
