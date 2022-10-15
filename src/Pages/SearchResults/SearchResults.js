@@ -13,6 +13,7 @@ const SearchResults = () => {
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1)
     window.scrollTo(0, 0)
+
     const getResults = useCallback(async (query) => {
         try {
             setLoading(true)
@@ -28,6 +29,7 @@ const SearchResults = () => {
         }
         setLoading(false)
     }, [currentPage])
+
     useEffect(() => {
         getResults(query)
     }, [query, currentPage, getResults])

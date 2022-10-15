@@ -14,6 +14,7 @@ import BasketIcon from '../../images/basket-icon.svg';
 import Hamburger from '../../images/hamburger.svg';
 import InfinityLoading from '../../images/infinity-loading-icon.svg';
 import MobileNavbar from "./MobileNavbar/MobileNavbar"
+import { commerce } from '../../commerce';
 
 
 const Header = () => {
@@ -21,13 +22,13 @@ const Header = () => {
     const { cart, loading } = useSelector((state) => state.cart)
     const { user, loading: userLoading } = useSelector((state) => state.user)
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories)
+    const loggedIn = commerce.customer.isLoggedIn()
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCategorieNames())
         dispatch(getCart())
-        dispatch(getUser())
-    }, [dispatch])
-
+        loggedIn && dispatch(getUser())
+    }, [dispatch, loggedIn])
 
     let editedCategories;
     if (categories.length > 0 && !loading) {

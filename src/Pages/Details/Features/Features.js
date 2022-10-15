@@ -29,7 +29,6 @@ const Features = ({ productName, price, variants, id, colors, storages, currentV
       variantData: resultVarinant?.id
     }))
   }
-
   const onClickColor = (id, index) => {
     setCurrentColor(index)
     setCurrentVariant({ color: { variant_group: colors[0].id, option: id }, storage: currentVariant.storage })
@@ -38,6 +37,7 @@ const Features = ({ productName, price, variants, id, colors, storages, currentV
     setCurrentStorage(index)
     setCurrentVariant({ color: currentVariant.color, storage: { variant_group: storages[0].id, option: id } })
   }
+
 
   return (
     <div className='features'>
@@ -48,25 +48,22 @@ const Features = ({ productName, price, variants, id, colors, storages, currentV
         {variants?.length > 0 ? resultVarinant?.price.raw : price}
         <img src={ManatIcon} alt="manat" />
       </div>
-      {variants?.length > 0 && <>
-        <div className="colors">
-          <span className='title'>Rəng:</span>
-          <div className="options">
-            {colors[0].options?.map((el, index) => {
-              return <div key={el.id} onClick={() => onClickColor(el.id, index)} className={index === currentColor ? 'option active' : "option"} style={index === currentColor ? { borderColor: el.name } : { background: el.name }}></div>
-            })}
-          </div>
+      {colors?.length > 0 && <div className="colors">
+        <span className='title'>Rəng:</span>
+        <div className="options">
+          {colors[0]?.options?.map((el, index) => {
+            return <div key={el.id} onClick={() => onClickColor(el.id, index)} className={index === currentColor ? 'option active' : "option"} style={index === currentColor ? { borderColor: el.name } : { background: el.name }}></div>
+          })}
         </div>
-        <div className="storage">
-          <span className='title'>Yaddaş:</span>
-          <div className="options">
-            {storages[0].options?.map((el, index) => {
-              return <div key={el.id} onClick={() => onClickStorage(el.id, index)} className={index === currentStorage ? 'option active' : "option"}>{el.name}</div>
-            })}
-          </div>
+      </div>}
+      {storages?.length > 0 && <div className="storage">
+        <span className='title'>Yaddaş:</span>
+        <div className="options">
+          {storages[0]?.options?.map((el, index) => {
+            return <div key={el.id} onClick={() => onClickStorage(el.id, index)} className={index === currentStorage ? 'option active' : "option"}>{el.name}</div>
+          })}
         </div>
-      </>}
-
+      </div>}
       <div className="quantity">
         <div className="title">Miqdar:</div>
         <button onClick={onClickDecrement} className="decrement">-</button>

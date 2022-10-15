@@ -84,7 +84,6 @@ export const updateUser = createAsyncThunk(
                 lastname,
                 phone
             }, id)
-            console.log('salam');
             return response;
         }
         catch (err) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getProduct } from '../../store/actions/products'
 import "./Details.scss";
@@ -21,11 +21,10 @@ const Details = () => {
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
-        getProduct(setLoading, setProduct,id)
+        getProduct(setLoading, setProduct, id)
         window.scrollTo(0, 0)
         getVariants(id);
-    }, [dispatch,id])
-
+    }, [dispatch, id])
 
     const colors = product?.variant_groups?.filter((el) => {
         return el.name === 'color'

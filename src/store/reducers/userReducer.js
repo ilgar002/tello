@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getUser, updateUser } from '../actions/user';
+import { commerce } from '../../commerce';
 
 const initialState = {
     user: {},
@@ -20,7 +21,6 @@ export const userSlice = createSlice({
         },
         [getUser.fulfilled]: (state, { payload }) => {
             state.loading = false;
-            console.log(payload);
             state.user = payload;
         }
         ,
@@ -36,7 +36,14 @@ export const userSlice = createSlice({
             state.loading = false;
             console.log(payload);
         },
+    },
+    reducers: {
+        logoutUser: (state) => {
+            state.user = {}
+            commerce.customer.logout();
+        }
     }
 })
+export const { logoutUser } = userSlice.actions
 
 export default userSlice.reducer
