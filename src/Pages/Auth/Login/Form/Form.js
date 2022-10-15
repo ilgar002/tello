@@ -7,8 +7,11 @@ import { loginUser } from '../../../../store/actions/user';
 import { validateEmail } from '../helper';
 import SocialTools from '../../SocialTools/SocialTools';
 
+
 const Form = ({ setMessage }) => {
   const dispatch = useDispatch()
+  const baseUrl = window.location.origin
+
 
   const { value: email,
     isValid: emailIsValid,
@@ -20,7 +23,7 @@ const Form = ({ setMessage }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault()
     if (emailIsValid) {
-      dispatch(loginUser({ email }))
+      dispatch(loginUser({ email, baseUrl }))
       setMessage(true)
     }
   }

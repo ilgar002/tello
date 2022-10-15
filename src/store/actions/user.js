@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { commerce } from '../../commerce';
 
+
 export const registerUser = createAsyncThunk(
     'user/registerUser',
     async ({ firstname, lastname, email, phone, }) => {
@@ -34,7 +35,7 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     'user/loginUser',
-    async ({ email }) => {
+    async ({ email, baseUrl }) => {
         try {
 
             const url = new URL(
@@ -49,7 +50,7 @@ export const loginUser = createAsyncThunk(
 
             let body = {
                 "email": email,
-                "base_url": "http://localhost:3000/create-token"
+                "base_url": `${baseUrl}/create-token`
             }
 
             const response = await axios.post(url, body, { headers: headers });

@@ -11,7 +11,7 @@ const SearchResults = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [results, setResults] = useState([])
     const [loading, setLoading] = useState(false)
-    const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1)
+    const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')))
     window.scrollTo(0, 0)
 
     const getResults = useCallback(async (query) => {
@@ -31,12 +31,10 @@ const SearchResults = () => {
     }, [currentPage])
 
     useEffect(() => {
+        setCurrentPage(Number(searchParams.get('page')) || 1);
         getResults(query)
-    }, [query, currentPage, getResults])
+    }, [query, currentPage, searchParams, getResults])
 
-    useEffect(() => {
-        results.meta?.pagination?.total > 8 && setSearchParams({ page: currentPage });
-    }, [searchParams, currentPage, setSearchParams, results])
 
     return (
         <div className='searchResults container' >
@@ -46,7 +44,7 @@ const SearchResults = () => {
                 </span>
             </div>
             <div className="results">
-                {loading ? <>
+                {(loading && !results.length > 0) ? <>
                     <Skeleton />
                     <Skeleton />
                     <Skeleton />
@@ -70,6 +68,8 @@ const SearchResults = () => {
                 data={results?.meta?.pagination}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                searchParams={searchParams}
+                setSearchParams={setSearchParams}
             />)}
         </div>
     )
