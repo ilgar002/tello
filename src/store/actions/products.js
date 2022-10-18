@@ -23,8 +23,6 @@ export const getAllProducts = createAsyncThunk('name/getAllProducts',
         }
     })
 
-
-
 export const getBestSellers =
     async (setLoading, setProducts) => {
         try {

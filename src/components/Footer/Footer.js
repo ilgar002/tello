@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Logo from '../Logo/Logo';
 import Socials from './Socials/Socials';
 import Location from "../../images/location.svg";
@@ -12,6 +13,8 @@ import Copyrigt from "../../images/copyright.svg"
 
 
 const Footer = () => {
+    const { categories, loading: categoriesLoading } = useSelector((state) => state.categories)
+    const cachedCategories = JSON.parse(localStorage.getItem('categories'))
     return (
         <footer>
             <div className="row">
@@ -22,17 +25,21 @@ const Footer = () => {
                 <div className="column">
                     <h5 className="column-title">Menu</h5>
                     <ul className='footer-column'>
-                        <li>
-                            <a href="/">Yeni</a>
-                        </li>
-                        <li>
-                            <a href="/">Endirimlər</a>
-                        </li>
-                        <li>
-                            <a href="/">Aksessuarlar</a>
-                        </li> <li>
-                            <a href="/">Bütün brendlər</a>
-                        </li>
+                        {categoriesLoading ?
+                            cachedCategories.slice(0, 5).map(el => {
+                                return <li key={el.id} className='link'>
+                                    <Link to={{ pathname: `products/${el.slug}` }} state={{ name: "salam" }}>
+                                        {el.name}
+                                    </Link>
+                                </li>
+                            }) :
+                            categories.slice(0, 5).map(el => {
+                                return <li key={el.id} className='link'>
+                                    <Link to={{ pathname: `products/${el.slug}` }} state={{ name: "salam" }}>
+                                        {el.name}
+                                    </Link>
+                                </li>
+                            })}
                     </ul>
                 </div>
                 <div className="column">
