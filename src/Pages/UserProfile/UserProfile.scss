@@ -14,3 +14,13 @@
         }
     }
 }
+
+@media(max-width:576px) {
+    .userProfile {
+        padding-bottom: 40px;
+
+        .s-container {
+            flex-direction: column;
+        }
+    }
+}

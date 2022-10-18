@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-function useForm(validate) {
-    const [value, setValue] = useState('')
+function useForm(validate, defaultValue) {
+    const [value, setValue] = useState(defaultValue || '')
     const [isTouched, setIsTouched] = useState(false)
 
 
@@ -12,7 +12,7 @@ function useForm(validate) {
         setValue(e.target.value)
     }
 
-    function onValueBlur() {
+    function onValueFocus() {
         setIsTouched(true)
     }
 
@@ -21,7 +21,7 @@ function useForm(validate) {
         isValid,
         hasError: valueIsNotValid,
         onValueChange,
-        onValueBlur,
+        onValueFocus,
     }
 }
 

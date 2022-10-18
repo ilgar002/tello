@@ -3,7 +3,6 @@
 .input {
     display: flex;
     flex-direction: column;
-    gap: 8px;
     max-width: 310px;
     width: 100%;
     margin-top: 24px;
@@ -23,11 +22,32 @@
         font-weight: 400;
         font-size: 1rem;
         color: $clr-gray-2;
+        margin-top: 8px;
 
         &::placeholder {
             font-weight: 400;
             font-size: 14px;
             color: $clr-gray-3;
+        }
+    }
+
+    .alert {
+        color: #ec5757;
+        font-weight: 500;
+        white-space: nowrap;
+        font-size: .75rem;
+        align-self: flex-end;
+        margin-top: 4px;
+        display: none;
+    }
+
+    &.invalid {
+        input {
+            border: 1px solid #ec5757;
+        }
+
+        .alert {
+            display: block;
         }
     }
 }

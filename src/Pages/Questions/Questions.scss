@@ -23,3 +23,21 @@
 
     }
 }
+
+@media(max-width:576px) {
+    .questions-section {
+        .questions {
+            width: 95%;
+
+            .question-item {
+                .question {
+                    align-items: flex-start;
+                }
+
+                .answer {
+                    padding: 20px 12px 12px 12px;
+                }
+            }
+        }
+    }
+}

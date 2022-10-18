@@ -14,41 +14,39 @@ const Form = () => {
 
     const { value: firstname,
         isValid: firstnameIsValid,
-        // hasError: firstnameHasError,
+        hasError: firstnameHasError,
         onValueChange: onFirstnameChange,
-        // onValueBlur: onFirstnameBlur
+        onValueFocus: onFirstnameFocus
     } = useForm(validateFirstname)
 
     const { value: lastname,
         isValid: lastnameIsValid,
-        // hasError: lastnameHasError,
+        hasError: lastnameHasError,
         onValueChange: onLastnameChange,
-        // onValueBlur: onLastnameBlur
+        onValueFocus: onLastnameFocus
     } = useForm(validateLastname)
 
     const { value: email,
         isValid: emailIsValid,
-        // hasError: emailHasError,
+        hasError: emailHasError,
         onValueChange: onEmailChange,
-        // onValueBlur: onEmailBlur
+        onValueFocus: onEmailFocus
     } = useForm(validateEmail)
 
     const { value: phone,
         isValid: phoneIsValid,
-        // hasError: phoneHasError,
+        hasError: phoneHasError,
         onValueChange: onPhoneChange,
-        // onValueBlur: onPhoneBlur
+        onValueFocus: onPhoneFocus
     } = useForm(validatePhone)
 
+    const formIsValid = firstnameIsValid && lastnameIsValid && emailIsValid && phoneIsValid
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        if (firstnameIsValid && lastnameIsValid && emailIsValid && phoneIsValid) {
+        if (formIsValid) {
             dispatch(registerUser({ firstname, lastname, email, phone, }))
             navigate('/login', { replace: true })
-        }
-        else {
-            console.log('error');
         }
     }
     return (
@@ -66,6 +64,8 @@ const Form = () => {
                     onChange={onFirstnameChange}
                     type="text"
                     value={firstname}
+                    onFocus={onFirstnameFocus}
+                    hasError={firstnameHasError ? 'invalid' : ''}
                 />
                 <Input
                     name={'soyad'}
@@ -74,11 +74,15 @@ const Form = () => {
                     onChange={onLastnameChange}
                     type="text"
                     value={lastname}
+                    onFocus={onLastnameFocus}
+                    hasError={lastnameHasError ? 'invalid' : ''}
                 />
                 <Input
                     name={'email'}
                     label={'E-mail'}
                     placeHolder={'nümunə@gmail.com'}
+                    hasError={emailHasError ? 'invalid' : ''}
+                    onFocus={onEmailFocus}
                     onChange={onEmailChange}
                     type="text"
                     value={email}
@@ -90,8 +94,10 @@ const Form = () => {
                     onChange={onPhoneChange}
                     type="text"
                     value={phone}
+                    onFocus={onPhoneFocus}
+                    hasError={phoneHasError ? 'invalid' : ''}
                 />
-                <button type='submit' className="register-btn">
+                <button disabled={!formIsValid} type='submit' className="register-btn">
                     Qeydiyyat
                 </button>
             </form>

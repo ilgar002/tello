@@ -65,3 +65,10 @@
         }
     }
 }
+
+@media(max-width:576px) {
+    .profile-dashboard {
+        width: 100%;
+        max-width: none;
+    }
+}

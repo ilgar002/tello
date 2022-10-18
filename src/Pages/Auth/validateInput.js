@@ -1,8 +1,8 @@
 export function validateFirstname(firstname) {
-    return firstname !== ''
+    return firstname !== '' && firstname.length > 2
 }
 export function validateLastname(lastname) {
-    return lastname !== ''
+    return lastname !== '' && lastname.length > 2
 }
 
 export function validateEmail(email) {

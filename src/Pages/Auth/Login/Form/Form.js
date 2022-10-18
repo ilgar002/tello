@@ -15,18 +15,20 @@ const Form = ({ setMessage }) => {
 
   const { value: email,
     isValid: emailIsValid,
-    // hasError: emailHasError,
+    hasError: emailHasError,
     onValueChange: onEmailChange,
-    // onValueBlur: onEmailBlur
+    onValueFocus: onEmailFocus
   } = useForm(validateEmail)
 
+  const formIsValid = emailIsValid
   const onSubmitHandler = (e) => {
     e.preventDefault()
-    if (emailIsValid) {
+    if (formIsValid) {
       dispatch(loginUser({ email, baseUrl }))
       setMessage(true)
     }
   }
+
 
   return (
     <div className='login-wrapper'>
@@ -42,9 +44,11 @@ const Form = ({ setMessage }) => {
           placeHolder={'nümunə@gmail.com'}
           onChange={onEmailChange}
           type="text"
+          hasError={emailHasError ? 'invalid' : ''}
+          onFocus={onEmailFocus}
           value={email}
         />
-        <button type='submit' className="login-btn">
+        <button disabled={!formIsValid} type='submit' className="login-btn">
           Daxil ol
         </button>
       </form>
