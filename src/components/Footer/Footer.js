@@ -26,14 +26,14 @@ const Footer = () => {
                     <h5 className="column-title">Menu</h5>
                     <ul className='footer-column'>
                         {categoriesLoading ?
-                            cachedCategories.slice(0, 5).map(el => {
+                            cachedCategories?.slice(0, 5).map(el => {
                                 return <li key={el.id} className='link'>
                                     <Link to={{ pathname: `products/${el.slug}` }} state={{ name: "salam" }}>
                                         {el.name}
                                     </Link>
                                 </li>
                             }) :
-                            categories.slice(0, 5).map(el => {
+                            categories?.slice(0, 5).map(el => {
                                 return <li key={el.id} className='link'>
                                     <Link to={{ pathname: `products/${el.slug}` }} state={{ name: "salam" }}>
                                         {el.name}
