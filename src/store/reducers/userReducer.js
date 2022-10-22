@@ -34,7 +34,6 @@ export const userSlice = createSlice({
         [updateUser.fulfilled]: (state, { payload }) => {
             state.user = payload;
             state.loading = false;
-            console.log(payload);
         },
     },
     reducers: {

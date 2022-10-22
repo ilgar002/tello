@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./Products.scss";
 import { useParams, useSearchParams } from 'react-router-dom'
-import { useSelector, useDispatch } from "react-redux";
-import { getAllProducts } from '../../store/actions/products';
+import { getProductsByCategorie } from '../../store/actions/products';
 import Direction from "../../components/Direction/Direction";
 import Filter from './Filter/Filter';
 import Order from "./Order/Order";
@@ -17,11 +16,11 @@ import MobileOptions from './MobileOptions/MobileOptions';
 
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const { allProducts, loading } = useSelector((state) => state.allProducts)
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')))
     const [currentOption, setCurrentOption] = useState(Number(searchParams.get('sortBy')) || optionsOrder[0])
     const [filterVisibility, setFilterVisibility] = useState(false)
-    const dispatch = useDispatch()
     const slug = useParams().slug
     window.scrollTo(0, 0)
     useEffect(() => {
@@ -43,15 +42,15 @@ const Products = () => {
                 el.checked = false
             })
         }
-        dispatch(getAllProducts({
+        getProductsByCategorie({
             category_slug: [slug],
             query: values.toString() || null,
             limit: 6,
             page: currentPage,
             sortBy: currentOption.actions.sortBy,
             sortDirection: currentOption.actions.sortDirection,
-        }))
-    }, [slug, dispatch, currentPage, currentOption, searchParams])
+        }, setLoading, setProducts)
+    }, [slug, currentPage, currentOption, searchParams])
 
     useEffect(() => {
         setFilterVisibility(false)
@@ -98,7 +97,7 @@ const Products = () => {
                     <div className="product-list">
                         <div className="row">
                             <span className="product-number">
-                                {loading ? "Məhsullar axtarılır..." : `${allProducts.meta?.pagination.total} məhsul tapıldı`}
+                                {loading ? "Məhsullar axtarılır..." : `${products.meta?.pagination.total} məhsul tapıldı`}
                             </span>
                             <Order
                                 currentOption={currentOption}
@@ -117,7 +116,7 @@ const Products = () => {
                                 <Skeleton />
                                 <Skeleton />
                                 <Skeleton />
-                            </> : allProducts.data?.map((el) => {
+                            </> : products.data?.map((el) => {
                                 return <Product
                                     key={el.id}
                                     id={el.id}
@@ -127,8 +126,8 @@ const Products = () => {
                                 />
                             })}
                         </div>
-                        {loading || (allProducts.meta?.pagination?.total > 6 && <Pagination
-                            data={allProducts?.meta?.pagination}
+                        {loading || (products.meta?.pagination?.total > 6 && <Pagination
+                            data={products?.meta?.pagination}
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             searchParams={searchParams}

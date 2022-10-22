@@ -30,7 +30,6 @@ export const removeFromCart = createAsyncThunk('name/removeFromCart',
     async (params) => {
         try {
             const response = await commerce.cart.remove(params.id)
-            console.log(response);
             return response
         }
         catch (err) {
@@ -40,10 +39,8 @@ export const removeFromCart = createAsyncThunk('name/removeFromCart',
 
 export const updateCart = createAsyncThunk('name/updateCart',
     async (params) => {
-        console.log(params);
         try {
             const response = await commerce.cart.update(params.id, { quantity: params.quantity })
-            console.log(response);
             return response
         }
         catch (err) {

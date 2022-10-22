@@ -7,8 +7,6 @@ import Loading from '../../../components/Loading/Spinner/Spinner'
 const CreateToken = () => {
   const navigate = useNavigate()
   const { token } = useParams();
-  console.log(token);
-  console.log('salam');
   useEffect(() => {
     commerce.customer.getToken(`${token}`, 'save=true')
       .then(() => navigate('/', { replace: true }));

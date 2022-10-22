@@ -4,14 +4,15 @@ import { addToCart } from '../../../store/actions/cart';
 import "./Features.scss";
 import ManatIcon from '../../../images/manat-icon.svg';
 import CartIcon from "../../../images/cart.svg"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Features = ({ productName, price, variants, id, colors, storages, currentVariant, setCurrentVariant, resultVarinant }) => {
   const dispatch = useDispatch()
   const [quantity, setQuantity] = useState(1)
   const [currentStorage, setCurrentStorage] = useState(0)
   const [currentColor, setCurrentColor] = useState(0)
-  // console.log(resultVarinant?.id);
+  const notify = () => toast.success("Məhsul səbətə əlavə olundu!");
   const onClickDecrement = () => {
     if (quantity > 1) {
       setQuantity((prev) => prev - 1)
@@ -28,6 +29,7 @@ const Features = ({ productName, price, variants, id, colors, storages, currentV
       quantity: quantity,
       variantData: resultVarinant?.id
     }))
+    notify()
   }
   const onClickColor = (id, index) => {
     setCurrentColor(index)
@@ -74,6 +76,9 @@ const Features = ({ productName, price, variants, id, colors, storages, currentV
         <img src={CartIcon} alt="cart" />
         Səbətə at
       </button>
+      <ToastContainer
+        toastStyle={{ color: "#333333" }}
+        position="bottom-right" />
     </div>
   )
 }

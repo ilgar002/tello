@@ -22,8 +22,8 @@ const MobileNavbar = ({ setMobileNavbar, mobileNavbar, categories, loading, edit
 
     return (
         <div className={mobileNavbar ? `mobileNavbar opened` : 'mobileNavbar'}>
-            <div className="header">
-                <div onClick={closeNavbar} className="closeButton">
+            <div onClick={closeNavbar} className="header">
+                <div className="closeButton">
                     <img src={CloseNavbar} alt="close" />
                 </div>
                 <Logo />

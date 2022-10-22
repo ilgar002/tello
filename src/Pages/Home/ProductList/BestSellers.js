@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./ProductList.scss";
 
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { getBestSellers } from '../../../store/actions/products';
 
 import Skeleton from "../../../components/Skeleton/Product/Product";
@@ -13,10 +13,10 @@ import RightArrow from '../../../images/right-arrow.svg';
 const BestSellers = () => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     useEffect(() => {
         getBestSellers(setLoading, setProducts)
-    }, [dispatch])
+    }, [])
     return (
         <div className="best-sellers products-section">
             <h6 className='products-title'>Ən çox satılan məhsullar</h6>

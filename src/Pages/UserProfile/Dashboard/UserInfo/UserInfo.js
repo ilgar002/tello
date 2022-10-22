@@ -45,7 +45,6 @@ const UserInfo = () => {
 
     const formIsValid = firstnameIsValid && lastnameIsValid && emailIsValid && phoneIsValid
 
-    console.log(formIsValid);
 
     const onSubmitHandler = (e) => {
         e.preventDefault()

@@ -6,7 +6,7 @@ const Input = ({ name, label, placeHolder, onChange, type, value, className, def
     return (
         <div className={`${className} input ${hasError}`}>
             <label htmlFor={name}>{label}</label>
-            <input onFocus={onFocus} defaultValue={defaultValue} onChange={onChange} value={value} type={type} id={name} placeholder={placeHolder} />
+            <input onBlur={onFocus} defaultValue={defaultValue} onChange={onChange} value={value} type={type} id={name} placeholder={placeHolder} />
             <small className="alert">Yanlış {label}</small>
         </div>
     )

@@ -1,6 +1,7 @@
 @import "../../Scss/variables.scss";
 
-.input {
+.input,
+.phone-input {
     display: flex;
     flex-direction: column;
     max-width: 310px;

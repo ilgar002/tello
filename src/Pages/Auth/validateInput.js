@@ -9,6 +9,6 @@ export function validateEmail(email) {
     return /\S+@\S+\.\S+/.test(email)
 }
 export function validatePhone(phone) {
-    return phone.length === 10
+    return phone.length === 13
 }
 

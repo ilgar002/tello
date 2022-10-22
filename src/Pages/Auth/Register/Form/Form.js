@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Form.scss';
 import { useNavigate } from 'react-router-dom';
 import SocialTools from '../../SocialTools/SocialTools';
 import Input from '../../../../components/Input/Input';
+import PhoneInput from '../../../../components/Input/PhoneInput';
 import useForm from "../../../../hooks/useForm";
 import { useDispatch } from "react-redux"
-import { validateFirstname, validateEmail, validateLastname, validatePhone } from '../../validateInput'
+import { validateFirstname, validateEmail, validateLastname } from '../../validateInput'
 import { registerUser } from '../../../../store/actions/user';
 const Form = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const [phone, setPhone] = useState('')
+    const phoneIsValid = phone?.length === 13
+    console.log(phone?.length);
+    console.log(phoneIsValid);
     const { value: firstname,
         isValid: firstnameIsValid,
         hasError: firstnameHasError,
@@ -32,13 +37,6 @@ const Form = () => {
         onValueChange: onEmailChange,
         onValueFocus: onEmailFocus
     } = useForm(validateEmail)
-
-    const { value: phone,
-        isValid: phoneIsValid,
-        hasError: phoneHasError,
-        onValueChange: onPhoneChange,
-        onValueFocus: onPhoneFocus
-    } = useForm(validatePhone)
 
     const formIsValid = firstnameIsValid && lastnameIsValid && emailIsValid && phoneIsValid
 
@@ -87,15 +85,13 @@ const Form = () => {
                     type="text"
                     value={email}
                 />
-                <Input
+                <PhoneInput
                     name={'nomre'}
                     label={'Mobil nömrə'}
-                    placeHolder={'055 555 55 50'}
-                    onChange={onPhoneChange}
-                    type="text"
-                    value={phone}
-                    onFocus={onPhoneFocus}
-                    hasError={phoneHasError ? 'invalid' : ''}
+                    placeHolder={'055 550 50 50'}
+                    phone={phone}
+                    setPhone={setPhone}
+                    isValid={phoneIsValid}
                 />
                 <button disabled={!formIsValid} type='submit' className="register-btn">
                     Qeydiyyat

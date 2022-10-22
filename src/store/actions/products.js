@@ -1,11 +1,11 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { commerce } from '../../commerce';
 import axios from 'axios';
 const token = 'pk_47165b89d67718703bdad63809002e5d9b5bc3e3e173a'
 
-export const getAllProducts = createAsyncThunk('name/getAllProducts',
-    async (params) => {
+export const getProductsByCategorie =
+    async (params, setLoading, setProducts) => {
         try {
+            setLoading(true)
             const url = new URL(
                 "https://api.chec.io/v1/products"
             );
@@ -15,13 +15,16 @@ export const getAllProducts = createAsyncThunk('name/getAllProducts',
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             };
-            const response = await axios.get(url, { headers: headers });
+            const response = await axios.get(url, { headers: headers })
+            setProducts(response.data)
+            setLoading(false)
             return response.data
         }
         catch (err) {
+            setLoading(false)
             return err.message
         }
-    })
+    }
 
 export const getBestSellers =
     async (setLoading, setProducts) => {
